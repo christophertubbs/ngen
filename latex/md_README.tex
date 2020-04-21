@@ -1,0 +1,74 @@
+{\bfseries{Description}}\+: ~\newline
+ As we attempt to apply hydrological modeling at different scales, the traditional organizational structure and algorithms of model software begin to interfere with the ability of the model to represent complex and heterogeneous processes at appropriate scales. While it is possible to do so, the code becomes highly specialized, and reasoning about the model and its states becomes more difficult. Model implementations are often the result of taking for granted the availability of a particular form of data {\bfseries{and}} solution -- attempting to map the solution to that data. This framework takes a data centric approach, organizing the data first and mapping appropriate solutions to the existing data.
+
+This framework includes an encapsulation strategy which focuses on the hydrologic data first, and then builds a functional abstraction of hydrologic behavior. This abstraction is naturally recursive, and unlocks a higher level of modeling and reasoning using computational modeling for hydrology. This is done by organizing model components along well-\/defined flow boundaries, and then implementing strict A\+P\+I’s to define the movement of water amongst these components. This organization also allows control and orchestration of first-\/class model components to leverage more sophisticated programming techniques and data structures.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Technology stack}}\+: Core Framework using C++ (minimum standard c++14) to provide polymorphic interfaces with reasonable systems integration.
+\item {\bfseries{Status}}\+: Version 0.\+1.\+0 in initial development including interfaces, logical data model, and framework structure. See \mbox{\hyperlink{md_CHANGELOG}{C\+H\+A\+N\+G\+E\+L\+OG}} for revision details.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md10}{}\doxysection{Structural Diagrams}\label{md_README_autotoc_md10}
+
+
+{\bfseries{Catchments}}\+: Catchments represent arbitrary spatial areas. They are the abstraction used to encapsulate a model. The three marked catchments could use three different models, 3 copies of the same model, or some combination of the previous options
+
+
+
+{\bfseries{Realizations}}\+: Different kinds of catchment realizations can be used to encapsulate different types of models. These models will have different types of relations with neighbors. When a relation exists between two adjacent catchments synchronization is necessary.
+
+
+
+{\bfseries{Complex Realizations}}\+: An important type of catchment realization is the complex catchment realization. This allows a single catchment to be represented by a network of higher detail catchment realizations and their relationships. This allows the modeled area to be represented at multiple levels of detail and supports dynamic high resolution nesting.\hypertarget{md_README_autotoc_md11}{}\doxysection{Dependencies}\label{md_README_autotoc_md11}
+
+\begin{DoxyItemize}
+\item \href{https://gcc.gnu.org/}{\texttt{ gcc}} or \href{https://clang.llvm.org/}{\texttt{ Clang}}
+\item \href{https://gitlab.kitware.com/cmake/cmake}{\texttt{ C\+Make}}
+\item \href{https://github.com/google/googletest}{\texttt{ Google Test}} only for testing
+\item \href{https://www.boost.org/doc/libs/1_72_0/libs/geometry/doc/html/geometry/compilation.html}{\texttt{ Boost.\+Geometry}}
+\end{DoxyItemize}
+
+See the Dependencies document for more information.\hypertarget{md_README_autotoc_md12}{}\doxysection{Installation}\label{md_README_autotoc_md12}
+Detailed instructions on how to install, configure, and get the project running. This should be frequently tested to ensure reliability. Alternatively, link to a separate \mbox{\hyperlink{md_INSTALL}{I\+N\+S\+T\+A\+LL}} document.\hypertarget{md_README_autotoc_md13}{}\doxysection{Configuration}\label{md_README_autotoc_md13}
+If the software is configurable, describe it in detail, either here or in other documentation to which you link.\hypertarget{md_README_autotoc_md14}{}\doxysection{Usage}\label{md_README_autotoc_md14}
+Show users how to use the software. Be specific. Use appropriate formatting when showing code snippets.\hypertarget{md_README_autotoc_md15}{}\doxysection{How to test the software}\label{md_README_autotoc_md15}
+The project uses the {\bfseries{Google Test}} framework for creating automated tests for C++ code.
+
+To execute the full collection of automated C++ tests, run the {\ttfamily test\+\_\+all} target in {\bfseries{C\+Make}}, then execute the generated executable. Alternatively, replace {\ttfamily test\+\_\+all} with {\ttfamily test\+\_\+unit} or {\ttfamily test\+\_\+integration} to run only those tests. For example\+: \begin{DoxyVerb}cmake --build cmake-build-debug --target test_all -- -j 4
+./cmake-build-debug/test/test_all
+\end{DoxyVerb}
+
+
+Or, if the build system has not yet been properly generated\+: \begin{DoxyVerb}git submodule update --init --recursive -- test/googletest
+cmake -DCMAKE_BUILD_TYPE=Debug -B cmake-build-debug -S .
+cmake --build cmake-build-debug --target test_all -- -j 4
+./cmake-build-debug/test/test_all
+\end{DoxyVerb}
+
+
+See the Testing Read\+Me file for a more thorough discussion of testing.\hypertarget{md_README_autotoc_md16}{}\doxysection{Known issues}\label{md_README_autotoc_md16}
+Document any known significant shortcomings with the software.\hypertarget{md_README_autotoc_md17}{}\doxysection{Getting help}\label{md_README_autotoc_md17}
+Instruct users how to get help with this software; this might include links to an issue tracker, wiki, mailing list, etc.
+
+{\bfseries{Example}}
+
+If you have questions, concerns, bug reports, etc, please file an issue in this repository\textquotesingle{}s Issue Tracker.\hypertarget{md_README_autotoc_md18}{}\doxysection{Getting involved}\label{md_README_autotoc_md18}
+This section should detail why people should get involved and describe key areas you are currently focusing on; e.\+g., trying to get feedback on features, fixing certain bugs, building important pieces, etc.
+
+General instructions on {\itshape how} to contribute should be stated with a link to \mbox{\hyperlink{md_CONTRIBUTING}{C\+O\+N\+T\+R\+I\+B\+U\+T\+I\+NG}}.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md20}{}\doxysection{Open source licensing info}\label{md_README_autotoc_md20}
+
+\begin{DoxyEnumerate}
+\item \mbox{\hyperlink{md_TERMS}{T\+E\+R\+MS}}
+\item \mbox{[}L\+I\+C\+E\+N\+SE\mbox{]}(L\+I\+C\+E\+N\+SE)
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md22}{}\doxysection{Credits and references}\label{md_README_autotoc_md22}
+
+\begin{DoxyEnumerate}
+\item Projects that inspired you
+\item Related projects
+\item Books, papers, talks, or other sources that have meaningful impact or influence on this project 
+\end{DoxyEnumerate}
