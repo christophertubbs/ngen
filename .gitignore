@@ -79,7 +79,8 @@ dist/
 
 # Doxygen #
 ###########
-docs/code/html/*
+docs/code/*
+docs/html/*
 
 # Certain IDE project files
 /.idea/
