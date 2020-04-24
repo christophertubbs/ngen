@@ -79,6 +79,8 @@ dist/
 
 # Doxygen #
 ###########
+docs/code
+docs/html
 docs/code/*
 docs/html/*
 
