@@ -26,7 +26,6 @@ namespace geojson {
      */
     typedef std::map<std::string, JSONProperty> PropertyMap;
 
-    /** @TODO: Convert JSONProperty into a variant of the supported types  */
     /**
      * Object used to store basic geojson property data
      */
@@ -38,7 +37,7 @@ namespace geojson {
 
                 if (property_tree.empty() && !property_tree.data().empty()) {
                     // This is a terminal node and has a raw value
-                        // TODO: Add handling for nested objects by determining if property.second is another ptree
+                        /// @TODO: Add handling for nested objects by determining if property.second is another ptree
                         std::string value = property_tree.data();
 
                         if (value == "true" || value == "false") {
@@ -275,6 +274,8 @@ namespace geojson {
         private:
             PropertyType type;
             std::string key;
+
+            /// @todo Convert values to variants to support templates
             long natural_number;
             double real_number;
             std::string string;

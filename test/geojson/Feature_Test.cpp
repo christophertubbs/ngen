@@ -492,12 +492,12 @@ TEST_F(Feature_Test, geometry_test) {
     ASSERT_EQ(copy.get_property("prop_3").as_real_number(), 2.0);
     ASSERT_ANY_THROW(copy.get_property("doesnotexist"));
 
-    ASSERT_FALSE(copy.is_root());
+    ASSERT_TRUE(copy.is_root());
     ASSERT_TRUE(copy.is_leaf());
-    ASSERT_EQ(copy.get_origination_length(), 5);
+    ASSERT_EQ(copy.get_origination_length(), 0);
     ASSERT_EQ(copy.get_destination_length(), 0);
-    ASSERT_EQ(copy.get_contributor_count(), 6);
-    ASSERT_EQ(copy.get_number_of_origination_features(), 2);
+    ASSERT_EQ(copy.get_contributor_count(), 0);
+    ASSERT_EQ(copy.get_number_of_origination_features(), 0);
     ASSERT_EQ(copy.get_number_of_destination_features(), 0);
 
     ASSERT_FALSE(multipolygon.is_root());

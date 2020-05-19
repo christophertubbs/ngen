@@ -4,6 +4,7 @@
 #include "JSONGeometry.hpp"
 #include "JSONProperty.hpp"
 #include "FeatureVisitor.hpp"
+#include "util.hpp"
 
 #include <memory>
 #include <ostream>
@@ -16,15 +17,6 @@
 namespace bg = boost::geometry;
 
 namespace geojson {
-    template<typename T>
-    static bool contains(const std::vector<T*> &container, const T *value) {
-        return not (std::find(container.begin(), container.end(), value) == container.end());
-    }
-    template<typename T>
-    static bool contains(const std::vector<T> &container, const T value) {
-        return not (std::find(container.begin(), container.end(), value) == container.end());
-    }
-
     class FeatureBase;
 
     /**
@@ -115,21 +107,15 @@ namespace geojson {
                 else {
                     this->geom = feature.geom;
                 }
-
-                for (FeatureBase *origination_feature : feature.origination_features()) {
-                    this->origination.push_back(origination_feature);
-                }
-
-                for (FeatureBase *destination_feature : feature.destination_features()) {
-                    this->destination.push_back(destination_feature);
-                }
             }
             
             /**
              * Destructor
              */
             virtual ~FeatureBase(){
-                this->break_links();
+                if (not this->destination.empty() or not this->origination.empty() or this->neighbors.empty()) {
+                    this->break_links();
+                }
             }
 
             /**
@@ -175,6 +161,10 @@ namespace geojson {
                 }
             }
 
+            virtual void add_destination_feature(Feature feature, bool connect = true) {
+                this->add_destination_feature(feature.get());
+            }
+
             /**
              * Searches for features that share common destinations and links them
              */
@@ -202,6 +192,10 @@ namespace geojson {
                 if (connect) {
                     feature->add_neighbor_feature(this, false);
                 }
+            }
+
+            virtual void add_neighbor_feature(Feature feature, bool connect = true) {
+                this->add_neighbor_feature(feature.get(), connect);
             }
 
             /**
@@ -573,7 +567,7 @@ namespace geojson {
                 }
                 
                 for (std::string key : rhs.property_keys()) {
-                    if (not contains(these_keys, key) or this->get_property(key) != rhs.get_property(key)) {
+                    if (not contains(these_property_keys, key) or this->get_property(key) != rhs.get_property(key)) {
                         return false;
                     }
                 }
@@ -605,7 +599,7 @@ namespace geojson {
                         return false;
                     }
                 }
-                
+
                 return true; 
             }
 
@@ -635,39 +629,34 @@ namespace geojson {
             }
 
             virtual void remove_destination(FeatureBase* feature) {
-                int feature_index = 0;
 
-                for (; feature_index < this->destination.size(); feature_index++) {
-                    if (feature == this->destination[feature_index]) {
-                        break;
-                    }
-                }
+                auto iterator = std::remove_if(
+                    this->destination.begin(),
+                    this->destination.end(),
+                    [&feature](FeatureBase* destination_feature){return (*destination_feature).operator==(*feature);}
+                );
 
-                this->destination.erase(this->destination.begin() + feature_index);
+                this->destination.erase(iterator, this->destination.end());
             }
 
             virtual void remove_origination(FeatureBase* feature) {
-                int feature_index = 0;
+                auto iterator = std::remove_if(
+                    this->origination.begin(),
+                    this->origination.end(),
+                    [&feature](FeatureBase* origination_feature){return *origination_feature == *feature;}
+                );
 
-                for (; feature_index < this->origination.size(); feature_index++) {
-                    if (feature == this->origination[feature_index]) {
-                        break;
-                    }
-                }
-
-                this->origination.erase(this->origination.begin() + feature_index);
+                this->origination.erase(iterator, this->origination.end());
             }
 
             virtual void remove_neighbor(FeatureBase* feature) {
-                int feature_index = 0;
+                auto matching_position = std::remove_if(
+                    this->neighbors.begin(),
+                    this->neighbors.end(),
+                    [&feature](FeatureBase* neighbor){return *neighbor == *feature;}
+                );
 
-                for (; feature_index < this->neighbors.size(); feature_index++) {
-                    if (feature == this->neighbors[feature_index]) {
-                        break;
-                    }
-                }
-
-                this->neighbors.erase(this->neighbors.begin() + feature_index);
+                this->neighbors.erase(matching_position, this->origination.end());
             }
 
             FeatureType type;

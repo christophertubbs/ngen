@@ -3,6 +3,69 @@
 
 using namespace geojson;
 
+FeatureCollection FeatureCollection::extract_features(const std::vector<std::string> ids_to_extract) {
+    FeatureList new_features;
+
+    for (std::string id_to_add : ids_to_extract)
+    {
+        int feature_index = this->find(id_to_add);
+        if (feature_index < 0) {
+            continue;
+        }
+
+        Feature original = this->get_feature(feature_index);
+        
+        new_features.push_back(features::extract_feature(original));
+    }
+
+    for (Feature new_feature : new_features) {
+        Feature original = this->get_feature(new_feature->get_id());
+
+        for (FeatureBase* origin : original->origination_features()) {
+            auto new_origin = find_first(
+                new_features,
+                [&](Feature feature){return feature->get_id() == origin->get_id();}
+            );
+
+            if (new_origin) {
+                new_feature->add_origination_feature(new_origin.get());
+            }
+        }
+
+        for (FeatureBase* destination : original->destination_features()) {
+            auto new_destination = find_first(
+                new_features,
+                [&](Feature feature){return feature->get_id() == destination->get_id();}
+            );
+
+            if (new_destination) {
+                new_feature->add_destination_feature(new_destination);
+            }
+        }
+
+        for (FeatureBase* neighbor : original->neighbor_features()) {
+            auto new_neighbor = find_first(
+                new_features,
+                [&](Feature feature){return feature->get_id() == neighbor->get_id();}
+            );
+
+            if (new_neighbor) {
+                new_feature->add_neighbor_feature(new_neighbor);
+            }
+        }
+    }
+
+    FeatureCollection new_collection = FeatureCollection(new_features, this->bounding_box);
+
+    for (auto key : this->keys()) {
+        new_collection.set(key, this->get(key));
+    }
+
+    new_collection.update_ids();
+
+    return new_collection;
+}
+
 Feature FeatureCollection::get_feature(int index) const {
     return features[index];
 }
@@ -91,6 +154,16 @@ JSONProperty FeatureCollection::get(std::string key) const {
     return foreign_members.at(key);
 }
 
+std::vector<std::string> FeatureCollection::keys() const {
+    std::vector<std::string> member_keys;
+
+    for (auto pair : this->foreign_members) {
+        member_keys.push_back(pair.first);
+    }
+
+    return member_keys;
+}
+
 void FeatureCollection::visit_features(FeatureVisitor& visitor) {
     for (Feature feature : this->features) {
         feature->visit(visitor);
@@ -121,7 +194,7 @@ void FeatureCollection::set(std::string key, std::string value) {
     foreign_members.emplace(key, JSONProperty(key, value));
 }
 
-void FeatureCollection::set(std::string key, JSONProperty& property) {
+void FeatureCollection::set(std::string key, JSONProperty property) {
     foreign_members.emplace(key, property);
 }
 

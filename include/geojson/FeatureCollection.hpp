@@ -48,6 +48,11 @@ namespace geojson {
             virtual ~FeatureCollection(){};
 
             /**
+             * Creates a new FeatureCollection containing only the given IDs
+             */
+            FeatureCollection extract_features(const std::vector<std::string> ids_to_extract);
+
+            /**
              * @return The number of elements within the collection
              */
             int get_size();
@@ -113,6 +118,8 @@ namespace geojson {
 
             JSONProperty get(std::string key) const;
 
+            std::vector<std::string> keys() const;
+
             void visit_features(FeatureVisitor& visitor);
 
             void set(std::string key, short value);
@@ -127,7 +134,7 @@ namespace geojson {
 
             void set(std::string key, std::string value);
 
-            void set(std::string key, JSONProperty& property);
+            void set(std::string key, JSONProperty property);
 
             void add_feature(Feature feature, std::string *id = nullptr);
 
