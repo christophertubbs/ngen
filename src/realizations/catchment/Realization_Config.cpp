@@ -1,6 +1,7 @@
 #include "Realization_Config.hpp"
 
 #include "Tshirt_Realization.hpp"
+#include "Alternate_Tshirt_Realization.hpp"
 #include <Simple_Lumped_Model_Realization.hpp>
 #include "tshirt_params.h"
 #include <iostream>
@@ -56,6 +57,59 @@ std::shared_ptr<Simple_Lumped_Model_Realization> Realization_Config_Base::get_si
             sr_tmp,
             t
         )
+    );
+}
+
+std::shared_ptr<Alternate_Tshirt_Realization> Realization_Config_Base::get_alternate_tshirt() {
+    std::vector<std::string> missing_parameters;
+    for(std::string parameter : REQUIRED_ALTERNATE_TSHIRT_PARAMETERS) {
+        if (not this->has_option(parameter)) {
+            missing_parameters.push_back(parameter);
+        }
+    }
+
+    if (missing_parameters.size() > 0) {
+        std::string message = "An Alternate TShirt realization cannot be created for '" + this->id + "'; the following parameters are missing: ";
+
+        for (int missing_parameter_index = 0; missing_parameter_index < missing_parameters.size(); missing_parameter_index++) {
+            message += missing_parameters[missing_parameter_index];
+
+            if (missing_parameter_index < missing_parameters.size() - 1) {
+                message += ", ";
+            }
+        }
+
+        throw std::runtime_error(message);
+    }
+
+    tshirt::tshirt_params tshirt_params{
+        this->get_option("maxsmc").as_real_number(),   //maxsmc FWRFH
+        this->get_option("wltsmc").as_real_number(),  //wltsmc  from fred_t-shirt.c FIXME NOT USED IN TSHIRT?!?!
+        this->get_option("satdk").as_real_number(),   //satdk FWRFH
+        this->get_option("satpsi").as_real_number(),    //satpsi    FIXME what is this and what should its value be?
+        this->get_option("slope").as_real_number(),   //slope
+        this->get_option("scaled_distribution_fn_shape_parameter").as_real_number(),      //b bexp? FWRFH
+        this->get_option("multiplier").as_real_number(),    //multipier  FIXMME (lksatfac)
+        this->get_option("alpha_fc").as_real_number(),    //aplha_fc   field_capacity_atm_press_fraction
+        this->get_option("Klf").as_real_number(),    //Klf lateral flow nash coefficient?
+        this->get_option("Kn").as_real_number(),    //Kn Kn	0.001-0.03 F Nash Cascade coeeficient
+        static_cast<int>(this->get_option("nash_n").as_natural_number()),      //number_lateral_flow_nash_reservoirs
+        this->get_option("Cgw").as_real_number(),    //fred_t-shirt gw res coeeficient (per h)
+        this->get_option("expon").as_real_number(),    //expon FWRFH
+        this->get_option("max_groundwater_storage_meters").as_real_number()   //max_gw_storage Sgwmax FWRFH
+    };
+
+    double soil_storage_meters = tshirt_params.max_soil_storage_meters * this->get_option("soil_storage_percentage").as_real_number();
+    double ground_water_storage = tshirt_params.max_groundwater_storage_meters * this->get_option("groundwater_storage_percentage").as_real_number();
+    return std::make_shared<Alternate_Tshirt_Realization>(        
+            this->get_forcing_parameters(),
+            soil_storage_meters, //soil_storage_meters
+            ground_water_storage, //groundwater_storage_meters
+            this->id, //used to cross-reference the COMID, need to look up the catchments GIUH data
+            *this->get_giuh_reader(),     //used to actually lookup GIUH data and create a giuh_kernel obj for catchment
+            tshirt_params,
+            this->get_option("nash_storage").as_real_vector(),
+            this->get_option("timestep").as_natural_number()
     );
 }
 
@@ -278,6 +332,9 @@ std::shared_ptr<HY_CatchmentRealization> Realization_Config_Base::get_realizatio
         {
             case Realization_Type::TSHIRT:
                 this->realization = this->get_tshirt();
+                return this->realization;
+            case Realization_Type::ALTERNATE_TSHIRT:
+                this->realization = this->get_alternate_tshirt();
                 return this->realization;
             case Realization_Type::SIMPLE_LUMPED:
                 this->realization = this->get_simple_lumped();

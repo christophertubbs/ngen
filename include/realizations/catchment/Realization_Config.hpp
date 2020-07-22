@@ -8,6 +8,7 @@
 
 #include "JSONProperty.hpp"
 #include "Tshirt_Realization.hpp"
+#include <Alternate_Tshirt_Realization.hpp>
 #include <Simple_Lumped_Model_Realization.hpp>
 #include "tshirt_params.h"
 
@@ -22,6 +23,7 @@ namespace realization {
 
     enum Realization_Type {
         TSHIRT,
+        ALTERNATE_TSHIRT,
         SIMPLE_LUMPED,
         NONE
     };
@@ -47,6 +49,28 @@ namespace realization {
         "timestep"
     };
 
+    const std::string REQUIRED_ALTERNATE_TSHIRT_PARAMETERS[] = {
+        "maxsmc",
+        "wltsmc",
+        "satdk",
+        "satpsi",
+        "slope",
+        "scaled_distribution_fn_shape_parameter",
+        "multiplier",
+        "alpha_fc",
+        "Klf",
+        "Kn",
+        "nash_n",
+        "Cgw",
+        "expon",
+        "max_groundwater_storage_meters",
+        "nash_storage",
+        "soil_storage_percentage",
+        "groundwater_storage_percentage",
+        "timestep",
+        "example"
+    };
+
     const std::string REQUIRED_HYMOD_PARAMETERS[] = {
         "sr",
         "storage",
@@ -65,6 +89,8 @@ namespace realization {
                 return "simple_lumped";
             case TSHIRT:
                 return "tshirt";
+            case ALTERNATE_TSHIRT:
+                return "alternate_tshirt";
             default:
                 return "none";
         }
@@ -78,6 +104,9 @@ namespace realization {
         }
         else if (lowercase == "tshirt") {
             return Realization_Type::TSHIRT;
+        }
+        else if (lowercase == "alternate_tshirt") {
+            return Realization_Type::ALTERNATE_TSHIRT;
         }
 
         return Realization_Type::NONE;
@@ -136,6 +165,8 @@ namespace realization {
             std::shared_ptr<Simple_Lumped_Model_Realization> get_simple_lumped();
 
             std::shared_ptr<Tshirt_Realization> get_tshirt();
+
+            std::shared_ptr<Alternate_Tshirt_Realization> get_alternate_tshirt();
 
             geojson::JSONProperty get_option(std::string option_name) const;
 
