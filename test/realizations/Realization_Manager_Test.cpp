@@ -152,3 +152,46 @@ TEST_F(Realization_Manager_Test, basic_reading) {
     ASSERT_TRUE(manager.contains("wat-88"));
     ASSERT_TRUE(manager.contains("wat-89"));
 }
+
+TEST_F(Realization_Manager_Test, basic_run) {
+    std::stringstream stream;
+    stream << EXAMPLE;
+
+    realization::Realization_Manager manager = realization::Realization_Manager(stream);
+
+    std::map<std::string, std::map<long, double>> calculated_results;
+
+    pdm03_struct pdm_et_data;
+    pdm_et_data.scaled_distribution_fn_shape_parameter = 1.3;
+    pdm_et_data.vegetation_adjustment = 0.99;
+    pdm_et_data.model_time_step = 0.0;
+    pdm_et_data.max_height_soil_moisture_storerage_tank = 400.0;
+    pdm_et_data.maximum_combined_contents = pdm_et_data.max_height_soil_moisture_storerage_tank /
+                                            (1.0 + pdm_et_data.scaled_distribution_fn_shape_parameter);
+
+    double input_fluxes[18];
+
+    double input_seed = 1.587;
+    double input_multiplier = 3.12348753;
+
+    for (int flux_index = 0; flux_index < 18; flux_index++) {
+        input_fluxes[flux_index] = input_seed * input_multiplier * flux_index;
+    }
+
+    long dt = 1;
+
+    for (std::pair<std::string, std::shared_ptr<realization::Realization>> realization : manager) {
+        if (calculated_results.count(realization.first) == 0) {
+            calculated_results.emplace(realization.first, std::map<long, double>());
+        }
+
+        for (long t = 0; t < 18; t++) {
+            double calculation = realization.second->get_response(
+                input_fluxes[t],
+                t,
+                dt,
+                &pdm_et_data
+            );
+        }
+    }
+}
