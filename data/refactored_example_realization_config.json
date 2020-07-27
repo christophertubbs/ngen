@@ -21,11 +21,11 @@
             ],
             "soil_storage_percentage": 0.667,
             "groundwater_storage_percentage": 0.5,
-            "timestep": 3600
-        },
-        "giuh": {
-            "giuh_path": "./test/data/giuh/GIUH.json",
-            "crosswalk_path": "./data/sugar_creek/crosswalk_subset.json"
+            "timestep": 3600,
+            "giuh": {
+                "giuh_path": "./test/data/giuh/GIUH.json",
+                "crosswalk_path": "./data/sugar_creek/crosswalk_subset.json"
+            }
         },
         "forcing": {
             "file_pattern": ".*{{ID}}.*.csv", 
@@ -57,11 +57,11 @@
                 ],
                 "soil_storage_percentage": 0.667,
                 "groundwater_storage_percentage": 0.5,
-                "timestep": 3600
-            },
-            "giuh": {
-                "giuh_path": "./test/data/giuh/GIUH.json",
-                "crosswalk_path": "./data/sugar_creek/crosswalk_subset.json"
+                "timestep": 3600,
+                "giuh": {
+                    "giuh_path": "./test/data/giuh/GIUH.json",
+                    "crosswalk_path": "./data/sugar_creek/crosswalk_subset.json"
+                }
             },
             "forcing": {
                 "path": "./data/sugar_creek/forcing/cat-87_2015-12-01 00_00_00_2015-12-30 23_00_00.csv",
@@ -113,11 +113,11 @@
                 ],
                 "soil_storage_percentage": 0.667,
                 "groundwater_storage_percentage": 0.5,
-                "timestep": 3600
-            },
-            "giuh": {
-                "giuh_path": "./test/data/giuh/GIUH.json",
-                "crosswalk_path": "./data/sugar_creek/crosswalk_subset.json"
+                "timestep": 3600,
+                "giuh": {
+                    "giuh_path": "./test/data/giuh/GIUH.json",
+                    "crosswalk_path": "./data/sugar_creek/crosswalk_subset.json"
+                }
             },
             "forcing": {
                 "path": "./data/sugar_creek/forcing/cat-89_2015-12-01 00_00_00_2015-12-30 23_00_00.csv",

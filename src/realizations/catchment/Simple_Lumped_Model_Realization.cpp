@@ -3,6 +3,7 @@
 #include <cmath>
 
 Simple_Lumped_Model_Realization::Simple_Lumped_Model_Realization(
+    std::string id,
     forcing_params forcing_config,
     double storage_meters,
     double max_storage_meters,
@@ -13,7 +14,7 @@ Simple_Lumped_Model_Realization::Simple_Lumped_Model_Realization(
     long n,
     const std::vector<double>& Sr,
     time_step_t t
-  ):HY_CatchmentArea(forcing_config)
+  ): Catchment_Realization(id, forcing_config)
 {
     params.max_storage_meters = max_storage_meters;
     params.a = a;
@@ -32,7 +33,7 @@ Simple_Lumped_Model_Realization::Simple_Lumped_Model_Realization(
 Simple_Lumped_Model_Realization::Simple_Lumped_Model_Realization(Simple_Lumped_Model_Realization && other)
 :fluxes( std::move(other.fluxes) ), params( std::move(other.params) ),
 cascade_backing_storage( std::move(other.cascade_backing_storage) ),
-state( std::move(other.state) )
+state( std::move(other.state) ), realization::Catchment_Realization(other.get_id())
 {
   this->forcing = std::move(other.forcing);
 }
@@ -40,7 +41,7 @@ state( std::move(other.state) )
 Simple_Lumped_Model_Realization::Simple_Lumped_Model_Realization(const Simple_Lumped_Model_Realization & other)
 :fluxes( other.fluxes ), params( other.params),
 cascade_backing_storage( other.cascade_backing_storage ),
-state( other.state )
+state( other.state ), realization::Catchment_Realization(other.get_id())
 {
   this->forcing = other.forcing;
   //rehook state.Sr* -> cascade_backing_storage
@@ -86,4 +87,33 @@ double Simple_Lumped_Model_Realization::get_response(double input_flux, time_ste
     //hymod_kernel::run(68400.0, params, state[t], state[t+1], fluxes[t], precip, et_params);
     hymod_kernel::run(dt, params, state[t], state[t+1], fluxes[t], precip, et_params);
     return fluxes[t].slow_flow_meters_per_second + fluxes[t].runoff_meters_per_second;
+}
+
+void Simple_Lumped_Model_Realization::create_realization(boost::property_tree::ptree &config, geojson::PropertyMap *global) {
+    geojson::PropertyMap options = this->interpret_parameters(config, global);    
+
+    double seconds_to_day = 3600.0/86400.0;
+
+    double storage = options.at("storage").as_real_number();
+    double max_storage = options.at("max_storage").as_real_number();
+    double a = options.at("a").as_real_number();
+    double b = options.at("b").as_real_number();
+    double Ks = options.at("Ks").as_real_number() * seconds_to_day; //Implicitly connected to time used for DAILY dt need to account for hourly dt
+    double Kq = options.at("Kq").as_real_number() * seconds_to_day; //Implicitly connected to time used for DAILY dt need to account for hourly dt
+    long n = options.at("n").as_natural_number();
+    double t = options.at("t").as_real_number();
+
+    params.max_storage_meters = max_storage;
+    params.a = a;
+    params.b = b;
+    params.Ks = Ks;
+    params.Kq = Kq;
+    params.n = n;
+
+    //Init the first time explicity using passed in data
+    fluxes[0] = hymod_fluxes();
+    
+    cascade_backing_storage.emplace(0, options.at("sr").as_real_vector()); //Move ownership of init vector to container
+    state[0] = hymod_state(0.0, 0.0, cascade_backing_storage[0].data());
+    state[0].storage_meters = storage;
 }

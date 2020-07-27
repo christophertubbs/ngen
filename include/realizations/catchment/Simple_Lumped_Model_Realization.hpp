@@ -1,19 +1,20 @@
 #ifndef SIMPLE_LUMPED_MODEL_REALIZATION_H
 #define SIMPLE_LUMPED_MODEL_REALIZATION_H
 
-#include <HY_CatchmentArea.hpp>
+#include "Catchment_Realization.hpp"
 #include "reservoir/LinearReservoir.hpp"
 #include "hymod/include/Hymod.h"
 #include <unordered_map>
 
 
-class Simple_Lumped_Model_Realization : public HY_CatchmentArea
+class Simple_Lumped_Model_Realization : public realization::Catchment_Realization
 {
     public:
 
         typedef long time_step_t;
 
         Simple_Lumped_Model_Realization(
+            std::string id,
             forcing_params forcing_config,
             double storage,
             double max_storage,
@@ -25,6 +26,10 @@ class Simple_Lumped_Model_Realization : public HY_CatchmentArea
             const std::vector<double>& Sr,
             time_step_t t
         );
+
+        Simple_Lumped_Model_Realization(std::string id, forcing_params forcing_config) : Catchment_Realization(id, forcing_config) {};
+
+        Simple_Lumped_Model_Realization(std::string id) : Catchment_Realization(id){};
 
         /**
          * @brief Explicit move constructor
@@ -44,12 +49,32 @@ class Simple_Lumped_Model_Realization : public HY_CatchmentArea
         double get_response(double input_flux, time_step_t t, time_step_t dt, void* et_params);
         double calc_et(double soim_m, void* et_params);
 
+        virtual void create_realization(boost::property_tree::ptree &config, geojson::PropertyMap *global = nullptr);
+
+        virtual std::string get_realization_type() {
+            return "simple_lumped";
+        }
+
         void add_time(time_t t, double n);
 
     protected:
+        std::string REQUIRED_PARAMETERS[9] = {
+            "sr",
+            "storage",
+            "max_storage",
+            "a",
+            "b",
+            "Ks",
+            "Kq",
+            "n",
+            "t"
+        };
+
+        virtual std::string* get_required_parameters() {
+            return this->REQUIRED_PARAMETERS;
+        }
 
     private:
-
 
         std::unordered_map<time_step_t, hymod_state> state;
         std::unordered_map<time_step_t, hymod_fluxes> fluxes;

@@ -45,6 +45,7 @@ std::shared_ptr<Simple_Lumped_Model_Realization> Realization_Config_Base::get_si
     std::vector<double> sr_tmp = {1.0, 1.0, 1.0};
     return std::make_shared<Simple_Lumped_Model_Realization>(
         Simple_Lumped_Model_Realization(
+            this->id,
             this->get_forcing_parameters(),
             storage,
             max_storage,
