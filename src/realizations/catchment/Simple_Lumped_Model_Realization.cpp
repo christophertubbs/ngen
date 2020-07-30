@@ -17,6 +17,10 @@ Simple_Lumped_Model_Realization::Simple_Lumped_Model_Realization(
   ): Catchment_Realization(id, forcing_config)
 {
     params.max_storage_meters = max_storage_meters;
+    params.min_storage_meters = 0;
+    params.activation_threshold_meters_groundwater_reservoir = 0;
+    params.activation_threshold_meters_nash_cascade_reservoir = 0;
+    params.reservoir_max_velocity_meters_per_second = 0;
     params.a = a;
     params.b = b;
     params.Ks = Ks;
@@ -104,6 +108,10 @@ void Simple_Lumped_Model_Realization::create_realization(boost::property_tree::p
     double t = options.at("t").as_real_number();
 
     params.max_storage_meters = max_storage;
+    params.min_storage_meters = 0;
+    params.activation_threshold_meters_groundwater_reservoir = 0;
+    params.activation_threshold_meters_nash_cascade_reservoir = 0;
+    params.reservoir_max_velocity_meters_per_second = 0;
     params.a = a;
     params.b = b;
     params.Ks = Ks;
