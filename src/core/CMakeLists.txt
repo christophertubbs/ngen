@@ -8,7 +8,12 @@ add_library(NGen::core ALIAS core)
 target_include_directories(core PUBLIC
         ${PROJECT_SOURCE_DIR}/include/core
         ${PROJECT_SOURCE_DIR}/include/core/catchment
+        ${PROJECT_SOURCE_DIR}/include/geojson
+        ${PROJECT_SOURCE_DIR}/include/geojson/features
         )
+target_link_libraries(core PUBLIC
+        Boost::boost
+)
 
 add_subdirectory("catchment")
 add_subdirectory("nexus")

@@ -19,6 +19,8 @@
 
 #include <FileChecker.h>
 #include <boost/algorithm/string.hpp>
+#include "CatchmentGenerator.hpp"
+#include "NexusGenerator.hpp"
 
 std::string catchmentDataFile = "";
 std::string nexusDataFile = "";
@@ -174,6 +176,10 @@ int main(int argc, char *argv[]) {
     realization::Formulation_Manager manager = realization::Formulation_Manager(REALIZATION_CONFIG_PATH);
     manager.read(catchment_collection, utils::getStdOut());
 
+    realization::CatchmentGenerator catchment_generator(catchmentDataFile, &manager, utils::getStdOut());
+    map<std::string, std::shared_ptr<HY_Catchment>> generated_catchments = catchment_generator.generate_catchments();
+    realization::NexusGenerator nexus_generator(nexusDataFile, generated_catchments);
+
     //TODO don't really need catchment_collection once catchments are added to nexus collection
     catchment_collection.reset();
     for(auto& feature : *nexus_collection)
@@ -219,6 +225,7 @@ int main(int argc, char *argv[]) {
       }
 
     }
+
     std::cout<<"Running Models"<<std::endl;
 
     pdm03_struct pdm_et_data = get_et_params();
@@ -228,32 +235,71 @@ int main(int argc, char *argv[]) {
     {
       std::cout<<"Time step "<<time_step<<std::endl;
 
-      for (std::pair<std::string, std::shared_ptr<realization::Formulation>> formulation_pair : manager ) {
-        //get the catchment response
-        double response = formulation_pair.second->get_response(0, time_step, 3600.0, &pdm_et_data);
-        //dump the output
-        std::cout<<"\tCatchment "<<formulation_pair.first<<" contributing "<<response<<" m/s to "<<catchment_to_nexus[formulation_pair.first]<<std::endl;
-        catchment_outfiles[formulation_pair.first] << time_step <<", "<<response<<std::endl;
-        response = response * boost::geometry::area(nexus_collection->get_feature(formulation_pair.first)->geometry<geojson::multipolygon_t>());
-        std::cout << "\t\tThe modified response is: " << response << std::endl;
-        //update the nexus with this flow
-        nexus_realizations[ catchment_to_nexus[formulation_pair.first] ]->add_upstream_flow(response, catchment_id[formulation_pair.first], time_step);
+      for (HY_HydroNexus nexus : nexus_generator) {
+        nexus.run_formulations(time_step, 3600.0, &pdm_et_data);
       }
 
-      for(auto &nexus: nexus_realizations)
+      for (std::pair<std::string, std::shared_ptr<realization::Formulation>> formulation_pair : manager ) {
+        std::string formulation_name = formulation_pair.first;
+        std::shared_ptr<realization::Formulation> formulation = formulation_pair.second;
+
+        //get the formulation result
+        double response = formulation->get_response(0, time_step, 3600.0, &pdm_et_data);
+
+        std::string target_nexus_id = catchment_to_nexus[formulation_name];
+
+        // Tell the user what the result was in m/s
+        std::cout<< "\tCatchment "<< formulation_name << " contributing " << response << " m/s to " << target_nexus_id << std::endl;
+
+        // Record the resulting value to the catchments output file
+        std::ofstream catchment_output = catchment_outfiles[formulation_name];
+        catchment_output << time_step << ", " << response << std::endl;
+
+        // Determine the greater impact that the channel had on the following nexus
+        geojson::Feature nexus_feature = nexus_collection->get_feature(formulation_name);
+        geojson::multipolygon_t nexus_geometry = nexus_feature->geometry<geojson::multipolygon_t>();
+        double nexus_area = boost::geometry::area(nexus_geometry);
+
+        response = response * nexus_area;
+
+        std::cout << "\t\tThe modified response is: " << response << std::endl;
+
+        //update the nexus with this flow
+        std::unique_ptr<HY_HydroNexus> target_nexus = nexus_realizations[target_nexus_id];
+        target_nexus->add_upstream_flow(response, formulation_name, time_step);
+      }
+
+      for(std::pair<std::string, std::unique_ptr<HY_HydroNexus>> id_nexus: nexus_realizations)
       {
         //TODO this ID isn't all that important is it?  And really it should connect to
         //the downstream waterbody the way we are using it, so consider if this is needed
         //it works for now though, so keep it
-        int id = catchment_id[nexus_from_catchment[nexus.first]];
-        std::cout<<"nexusID: "<<id<<std::endl;
-        double contribution_at_t = nexus_realizations[nexus.first]->get_downstream_flow(id, time_step, 100.0);
-        if(nexus_outfiles[nexus.first].is_open())
+        std::string nexus_name = id_nexus.first;
+        std::unique_ptr<HY_HydroNexus> nexus = id_nexus.second;
+
+        // Get the ID for the catchment that sent values here
+        // WARNING: Makes the assumption that only one catchment supplies values
+        std::string source_catchment_name = nexus_from_catchment[nexus_name];
+        int catchment_id = catchment_id[source_catchment_name];
+
+        std::cout << "nexusID: " << catchment_id << std::endl;
+
+        // Get the contribution of the collected catchment to this nexus' downstream flow
+        double contribution_at_timestep = nexus->get_downstream_flow(catchment_id, time_step, 100.0);
+
+        std::ofstream nexus_output_file = nexus_outfiles[nexus_name];
+
+        if(nexus_output_file.is_open())
         {
-          nexus_outfiles[nexus.first] << time_step <<", "<<contribution_at_t<<std::endl;
+          // Record how much the catchment contributed to this nexus' downstream flow
+          nexus_output_file << time_step << ", " << contribution_at_timestep << std::endl;
         }
-        std::cout<<"\tNexus "<<nexus.first<<" has "<<contribution_at_t<<" m^3/s"<<std::endl;
-        output_map[nexus.first].push_back(contribution_at_t);
+
+        std::cout << "\tNexus " << nexus_name << " has " << contribution_at_timestep << " m^3/s" << std::endl;
+
+        // Update the overall collection of results
+        std::vector<double> output_record = output_map[nexus_name];
+        output_record.push_back(contribution_at_timestep);
       }
     }
 

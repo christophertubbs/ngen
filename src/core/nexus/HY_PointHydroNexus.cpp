@@ -39,13 +39,21 @@ HY_PointHydroNexus::~HY_PointHydroNexus()
     //dtor
 }
 
-double HY_PointHydroNexus::get_downstream_flow(long catchment_id, time_step_t t, double percent_flow)
+double HY_PointHydroNexus::get_downstream_flow(time_step_t timestep, HY_Catchment* catchment)
 {
 
-    if ( t < min_timestep ) BOOST_THROW_EXCEPTION(invalid_time_step());
-    if ( completed.find(t) != completed.end() ) BOOST_THROW_EXCEPTION(completed_time_step());
+    if ( timestep < min_timestep ) {
+        // This parameter is saying that we're at, say time step 2, but the earliest we could ever possibly be is 6
+        BOOST_THROW_EXCEPTION(invalid_time_step());
+    }
+    if ( completed.find(timestep) != completed.end() ) {
+        // If we find evidence that we've completed this timestep, we exit out
+        BOOST_THROW_EXCEPTION(completed_time_step());
+    }
 
-    auto s1 = upstream_flows.find(t);
+    auto upstream_flows_at_timestep = upstream_flows.find(timestep);
+
+    double percent_flow = catchment->get_flow_percentage();
 
     if ( percent_flow > 100.0)
     {
@@ -53,7 +61,7 @@ double HY_PointHydroNexus::get_downstream_flow(long catchment_id, time_step_t t,
 
         BOOST_THROW_EXCEPTION(invalid_downstream_request());
     }
-    else if ( s1 == upstream_flows.end() )
+    else if ( upstream_flows_at_timestep == upstream_flows.end() )
     {
         // there are no recorded flows for this time.
         // throw exception
@@ -62,29 +70,27 @@ double HY_PointHydroNexus::get_downstream_flow(long catchment_id, time_step_t t,
     }
     else
     {
-        auto s2 = summed_flows.find(t);
-
-        if ( s2 == summed_flows.end() )
+        if ( this->get_summed_flows().find(timestep) == this->get_summed_flows().end() )
         {
             // the flows have not been summed calculate the sum
             // and store it into summed_flows
             double sum {};
-            for(auto& n : s1->second )
+            for(std::pair<std::string, double> idAndflow : upstream_flows_at_timestep->second )
             {
-                sum += n.second;
+                sum += idAndflow.second;
             }
 
-            summed_flows[t] = sum;
+            this->get_summed_flows()[timestep] = sum;
 
             // mark downstream request with the amount of flow requested
             // and the catchment making the request
 
-            id_request_vector v;
-            v.push_back(std::pair<long,double>(catchment_id,percent_flow));
-            downstream_requests[t] = v;
+            request_vector v;
+            v.push_back(std::pair<std::string,double>(catchment_id,percent_flow));
+            this->get_downstream_requests()[timestep] = v;
 
             // record the total requests for this time
-            total_requests[t] = percent_flow;
+            this->get_total_requests()[timestep] = percent_flow;
 
             // release flux
             return sum * (percent_flow / 100);
@@ -93,7 +99,7 @@ double HY_PointHydroNexus::get_downstream_flow(long catchment_id, time_step_t t,
         {
             // flows have been summed so some water has allready been release
 
-            if ( total_requests[t] + percent_flow > 100.0 )
+            if ( this->get_total_requests()[timestep] + percent_flow > 100.0 )
             {
                     // if the amount of flow allready released plus the amount
                     // of this release is greater than 100 throw an error
@@ -102,23 +108,23 @@ double HY_PointHydroNexus::get_downstream_flow(long catchment_id, time_step_t t,
             else
             {
                 // update the total_request for this timesteo
-                total_requests[t] += percent_flow;
+                this->get_total_requests()[timestep] += percent_flow;
 
                 // add this request to recorded downstream requests
-                downstream_requests[t].push_back(std::pair<long,double>(catchment_id,percent_flow));
+                this->get_downstream_requests()[timestep].push_back(std::pair<std::string,double>(catchment_id,percent_flow));
 
-                double released_flux = summed_flows[t] * (percent_flow / 100.0);
+                double released_flux = this->get_summed_flows()[timestep] * (percent_flow / 100.0);
 
-                if (100.0 - total_requests[t] < 0.00005 )
+                if (100.0 - this->get_total_requests()[timestep] < 0.00005 )
                 {
                     // all water has been requested remove bookeeping
 
-                    upstream_flows.erase(upstream_flows.find(t));
-                    downstream_requests.erase(downstream_requests.find(t));
-                    summed_flows.erase(summed_flows.find(t));
-                    total_requests.erase(total_requests.find(t));
+                    upstream_flows.erase(upstream_flows.find(timestep));
+                    this->get_downstream_requests().erase(this->get_downstream_requests().find(timestep));
+                    this->get_summed_flows().erase(this->get_summed_flows().find(timestep));
+                    this->get_total_requests().erase(this->get_total_requests().find(timestep));
 
-                    completed.emplace(t);
+                    completed.emplace(timestep);
                 }
 
                 return released_flux;
@@ -127,32 +133,35 @@ double HY_PointHydroNexus::get_downstream_flow(long catchment_id, time_step_t t,
     }
 }
 
-void HY_PointHydroNexus::add_upstream_flow(double val, long catchment_id, time_step_t t)
+void HY_PointHydroNexus::add_upstream_flow(double value, std::shared_ptr<HY_Catchment> catchment, time_step_t timestep)
 {
-     if ( t < min_timestep ) BOOST_THROW_EXCEPTION(invalid_time_step());
-    if ( completed.find(t) != completed.end() ) BOOST_THROW_EXCEPTION(completed_time_step());
+    if ( timestep < min_timestep ) {
+        BOOST_THROW_EXCEPTION(invalid_time_step());
+    }
+    else if ( completed.find(timestep) != completed.end() ) {
+        BOOST_THROW_EXCEPTION(completed_time_step());
+    }
 
-    auto s1 = upstream_flows.find(t);
-    if (  s1 == upstream_flows.end() )
+    auto flowsForTimestep = upstream_flows.find(timestep);
+
+    if (  flowsForTimestep == upstream_flows.end() )
     {
         // case 1 there are no upstream flow for this time
         // create a new vector of flow id pairs and add the current flow
         // and catchment id to the vector then insert the vector
 
         id_flow_vector v;
-        v.push_back(std::pair<long,double>(catchment_id,val));
-         upstream_flows[t] = v;
+        v.push_back(std::pair<std::string,double>(catchment_id,value));
+        upstream_flows[timestep] = v;
     }
     else
     {
-        auto s2 = summed_flows.find(t);
-
-        if ( s2 == summed_flows.end() )
+        if ( this->get_summed_flows().find(timestep) == this->get_summed_flows().end() )
         {
             // case 2 there are no summed flow for the time
             // this means there have been no downstream request and we can add water
 
-             s1->second.push_back(std::pair<long,double>(catchment_id,val));
+             flowsForTimestep->second.push_back(std::pair<std::string,double>(catchment_id,value));
         }
         else
         {
@@ -161,48 +170,6 @@ void HY_PointHydroNexus::add_upstream_flow(double val, long catchment_id, time_s
 
              BOOST_THROW_EXCEPTION(add_to_summed_nexus());
          }
-    }
-}
-
-std::pair<double, int> HY_PointHydroNexus::inspect_upstream_flows(time_step_t t)
-{
-    auto s1 = upstream_flows.find(t);
-    if ( s1 == upstream_flows.end() )
-    {
-        return std::pair<double,long>(0.0, 0);
-    }
-    else
-    {
-        double total_upstream_flows = 0.0;
-
-        auto& id_flow_vector = s1->second;
-        for (auto& p : id_flow_vector )
-        {
-            total_upstream_flows += p.second;
-        }
-
-        return std::pair<double, long>(total_upstream_flows, id_flow_vector.size() );
-    }
-}
-
-std::pair<double, int> HY_PointHydroNexus::inspect_downstream_requests(time_step_t t)
-{
-    auto s1 = downstream_requests.find(t);
-    if ( s1 == downstream_requests.end() )
-    {
-        return std::pair<double,long>(0.0, 0);
-    }
-    else
-    {
-        double total_downstream_requests = 0.0;
-
-        auto& id_request_vector = s1->second;
-        for (auto& p : id_request_vector )
-        {
-            total_downstream_requests += p.second;
-        }
-
-        return std::pair<double, long>(total_downstream_requests, id_request_vector.size() );
     }
 }
 
@@ -225,33 +192,34 @@ void HY_PointHydroNexus::set_mintime(time_step_t t)
     }
 
     // C++ 2014 would allow this do be done with a single lambda
-    auto l1 = [](int min_v, std::unordered_map<long,id_flow_vector>& v)
+    auto clearIdValueCollections = [](int minimum_timestep, std::unordered_map<long, id_flow_vector>& idsToValueCollection)
     {
-        for( auto& t: v)
+        for( std::pair<long, id_flow_vector> idToValues : idsToValueCollection)
         {
-            if ( t.first < min_v )
+            if ( idToValues.first < minimum_timestep )
             {
-                v.erase(t.first);
+                idsToValueCollection.erase(idToValues.first);
             }
         }
     };
 
     // C++ 2014 would allow this do be done with a single lambda
-    auto l2 = [](int min_v, std::unordered_map<long,double>& v)
+    auto clearStepsToValues = [](int minimum_timestep, std::unordered_map<long,double>& stepsToValues)
     {
-        for( auto& t: v)
+        for(std::pair<long, double> stepToValue: stepsToValues)
         {
-            if ( t.first < min_v )
+            if ( stepToValue.first < minimum_timestep )
             {
-                v.erase(t.first);
+                stepsToValues.erase(stepToValue.first);
             }
         }
     };
 
     // remove expired time steps from all maps
-    l1(min_timestep,downstream_requests);
-    l1(min_timestep,upstream_flows);
-    l2(min_timestep,summed_flows);
-    l2(min_timestep,total_requests);
+    clearIdValueCollections(min_timestep, downstream_requests);
+    clearIdValueCollections(min_timestep, upstream_flows);
+
+    clearStepsToValues(min_timestep, summed_flows);
+    clearStepsToValues(min_timestep, total_requests);
 
 }

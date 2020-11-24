@@ -7,7 +7,13 @@ add_library(NGen::core_nexus ALIAS core_nexus)
 
 target_include_directories(core_nexus PUBLIC
         ${PROJECT_SOURCE_DIR}/include/core
+        ${PROJECT_SOURCE_DIR}/include/core/catchment
+        ${PROJECT_SOURCE_DIR}/include/forcing
+        ${PROJECT_SOURCE_DIR}/include/utilities
+        ${PROJECT_SOURCE_DIR}/include/core/catchment/giuh
         ${PROJECT_SOURCE_DIR}/include/core/nexus
+        ${PROJECT_SOURCE_DIR}/include/geojson
+        ${PROJECT_SOURCE_DIR}/include/geojson/features
         )
 
 # TODO: consider setting a minimum or required version
