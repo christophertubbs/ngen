@@ -6,8 +6,13 @@
 | ------------- |:------------- | :-----:| :-------: |
 | [Google Test](#google-test) | submodule  | `release-1.10.0` | |
 | [C/C++ Compiler](#c-and-c-compiler) | external | see below |  |
-| [CMake](#cmake) | external | \> `3.10` | |
+| [CMake](#cmake) | external | \>= `3.12` | |
 | [Boost (Headers Only)](#boost-headers-only) | external | `1.72.0` | headers only library |
+| [MPI](https://www.mpi-forum.org) | external | No current implementation or version requirements | Required for [multi-process distributed execution](DISTRIBUTED_PROCESSING.md) |
+| [Python 3 Libraries](#python-3-libraries) | external | \> `3.6.8` | Can be [excluded](#overriding-python-dependency). Requires ``numpy`` package |
+| [pybind11](#pybind11) | submodule | `v2.6.0` | Can be [excluded](#overriding-pybind11-dependency). |
+| [dmod.subsetservice](#the-dmodsubsetservice-package) | external | `>= 0.3.0` | Only required to perform integrated [hydrofabric file subdividing](DISTRIBUTED_PROCESSING.md#subdivided-hydrofabric) for distributed processing . |
+| [t-route](#t-route) | submodule | see below | Module required to enable channel-routing.  Requires pybind11 to enable |
 
 # Details
 
@@ -69,7 +74,7 @@ However, a [CMake build system](BUILDS_AND_CMAKE.md#generating-a-build-system) m
 
 ### Version Requirements
 
-Currently, a version of CMake >= `3.10.0` is required.
+Currently, a version of CMake >= `3.12.0` is required.
 
 ## Boost (Headers Only)
 
@@ -96,3 +101,110 @@ The variable should be set to the value of the **boost root directory**, which i
 ### Version Requirements
 
 At present, a version >= `1.72.0` is required.
+
+## Python 3 Libraries
+
+In order to interact with external models written in Python, the Python libraries must be made available.  
+
+Further, the Python environment must have `numpy` installed.  Several Python BMI function calls utilize `numpy` arrays, making `numpy` a necessity for using external Python models implementing BMI
+
+#### Overriding Python Dependency
+
+It is possible to run the build, build artifacts, etc. in a way that excludes Python-related functionality, thereby relieving this as a dependency.  This may be useful in runtime environments that will not interact with a Python external model, and/or installing Python is prohibitively difficult.
+
+To do this, set either the `NGEN_ACTIVATE_PYTHON` environment variable to `false` or include the `-DNGEN_ACTIVATE_PYTHON:BOOL=false` option when running the `cmake` build on the command line to generate the build system.
+
+### Setup
+
+The first step is to make sure Python is installed (with step 1a being installing NumPy.  CMake will then use its [FindPython](https://cmake.org/cmake/help/v3.19/module/FindPython.html#module:FindPython) functionality to obtain the Python libraries. On some systems, CMake may be able to find everything automatically, though that will not always be the case.
+
+If CMake cannot find the needed Python artifacts on its own, the following user environmental variables can be set in the user's shell to control where CMake looks:
+
+* `PYTHON_INCLUDE_DIR`
+    * This should be the directory containing the Python header files in the local installation
+* `PYTHON_LIBRARIES`
+    * This should be set to the directory containing the appropriate local lib file(s) (e.g., `libpython*.dylib` on a Mac)
+
+#### NumPy
+
+Additionally, the NumPy package must be installed and its headers available, in particular to work with Python BMI functions (with the general details of installing Python packages left to the user).  The simplest method is installing in the root/global environment, though this is not always an option.
+
+One supported option is to create a `virtualenv` environment at `.venv` in the project root, then install `numpy` within it.   Such `.venv` directory is ignored by Git and searched by CMake for the NumPy headers.
+
+The variable `Python_NumPy_INCLUDE_DIR` (either as a CMake variable or a user environment variable) can also be used to set the NumPy include directory path searched by CMake.  However, this will be ignored if there is a `.venv` directory found, as described above.
+    
+### Version Requirements
+
+A version of Python 3 >= `3.6.8` is required.  There are no specific version requirements for `numpy` currently. 
+
+## pybind11
+
+The `pybind11` dependency is a header-only library that allows for exposing Python types, etc. within C++ code.  It is necessary to work with externally maintained, modular Python models.
+
+#### Overriding pybind11 Dependency
+
+This dependency can be overridden and disabled if the Python dependency is configured as such, as described [here](#overriding-python-dependency).
+
+### Setup
+
+The dependency is handled as a Git Submodule, located at `extern/pybind11`.   To initialize the submodule after cloning the repo:
+
+    git submodule update --init extern/pybind11
+    
+Git _should_ take care of checking out the commit for the required version automatically (assuming latest upstream changes have been fetched), so it should be possible to also use the command above to sync future updates to the required version.
+ 
+However, to verify the checked out version, examine the output of:
+
+    git submodule status
+    
+If the above `update` command does not check out the expected version, this can be done manually.  Below is an example of how to do this for the version tagged `v2.6.0`:
+
+    cd extern/pybind11
+    git checkout v2.6.0
+    
+### Version Requirements
+
+The version used is automatically handled by submodule config.  This can be synced by re-running the initialization command above.
+
+As of project version `0.1.0`, the required version is tag `v2.6.0`.
+
+## The `dmod.subsetservice` Package
+
+This is an optional package available via the [OWP DMOD tool](https://github.com/NOAA-OWP/DMOD).  It only is required to enable the driver to generate partition-specific subdivided hydrofabric files from the complete hydrofabric file, as is conditionally required for [distributed processing](DISTRIBUTED_PROCESSING.md).  Further, its use is only attempted when such files are needed for distributed processing _and_ are not already created.
+
+As such, this dependency is ignored unless both Python support and MPI support are enabled and built into the _ngen_ driver.
+
+### Setup
+
+This must be installed in the active Python environment at the time the `ngen` executable is called.  This is usually best done via a virtual environment, especially if one is already set up as described for the [Numpy](#numpy) dependency.  However, all that matters is that the Python environment available to the ngen driver has this package installed.
+
+If installing to a virtual env as suggested above, the installation steps are similar to what is described in the [DMOD project document for the subsetting CLI tool]( https://github.com/NOAA-OWP/DMOD/tree/master/doc/SUBSETTING_CLI_TOOL.md).  The difference is just to create and/or source a virtual environment locate here first, and then change to the DMOD project directory.  All the example commands after the step of sourcing the virtual environment can then be followed as described on that page.
+
+### Version Requirements
+
+Version `0.3.0` or greater must be installed.
+
+## t-route
+
+### Setup
+
+The dependency is handled as a Git Submodule, located at `extern/t-route`.   To initialize the submodule after cloning the repo:
+```sh
+git submodule update --init extern/t-route
+```
+Git _should_ take care of checking out the commit for the required version automatically (assuming latest upstream changes have been fetched), so it should be possible to also use the command above to sync future updates to the required version.
+ 
+Once the submodule is fetched, the routing module must installed in a suitable environment.
+
+One supported option is to create a `virtualenv` environment at `.venv` in the project root and activate this environment for any simulations using routing.  
+
+See the [installing t-route section here](PYTHON_ROUTING.md#installing-t-route) for more details.
+
+### Enabling Routing in Simulations
+
+To do this, include the `-DNGEN_ACTIVATE_ROUTING:BOOL=true` option when running the `cmake` build on the command line to generate the build system.  An appropriate `routing_config.yaml` must be passed to the NGen realization config.  More info can be found in the [python routing documentation](PYTHON_ROUTING.md#routing-config)
+
+Before executing any simulation, be sure to activate the virtual environment.
+```sh
+source .venv/bin/activate
+```
