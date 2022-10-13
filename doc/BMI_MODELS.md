@@ -1,20 +1,36 @@
 # BMI External Models
 
-* [Summary](#summary)
-* [Formulation Config](#formulation-config)
-  * [Required Parameters](#required-parameters)
-  * [Semi-Optional Parameters](#semi-optional-parameters)
-  * [Optional Parameters](#optional-parameters)
-* [BMI Models Written in C](#bmi-models-written-in-c)
-  * [BMI C Model As Shared Library](#bmi-c-shared-library)
-  * [Example: CFE Shared Library](#bmi-c-cfe-example)
-  * [BMI C Caveats](#bmi-c-caveats)
-* [BMI Models Written in Fortran](#bmi-models-written-in-fortran)
-  * [Enabling Fortran Integration](#enabling-fortran-integration)
-  * [ISO_C_BINDING Middleware](#iso-c-binding-middleware)
-  * [A Compiled Shared Library](#a-compiled-shared-library)
-    * [Required Additional Fortran Registration Function](#required-additional-fortran-registration-function)
-* [Multi-Module BMI Formulations](#multi-module-bmi-formulations)
+- [BMI External Models](#bmi-external-models)
+  - [Summary](#summary)
+  - [Formulation Config](#formulation-config)
+    - [Required Parameters](#required-parameters)
+        - [Parameter Details:](#parameter-details)
+    - [Semi-Optional Parameters](#semi-optional-parameters)
+    - [Optional Parameters](#optional-parameters)
+  - [BMI Models Written in C](#bmi-models-written-in-c)
+    - [BMI C Model As Shared Library](#bmi-c-model-as-shared-library)
+      - [Dynamic Loading](#dynamic-loading)
+    - [BMI C CFE Example](#bmi-c-cfe-example)
+    - [BMI C Caveats](#bmi-c-caveats)
+      - [BMI C Activate/Deactivation Required in CMake Build](#bmi-c-activatedeactivation-required-in-cmake-build)
+      - [Additional Bootstrapping Function Needed](#additional-bootstrapping-function-needed)
+        - [Why?](#why)
+  - [BMI Models Written in C++](#bmi-models-written-in-c-1)
+    - [BMI C++ Model As Shared Library](#bmi-c-model-as-shared-library-1)
+      - [Dynamic Loading](#dynamic-loading-1)
+      - [Additional Bootstrapping Functions Needed](#additional-bootstrapping-functions-needed)
+        - [Why?](#why-1)
+    - [BMI C++ Example](#bmi-c-example)
+  - [BMI Models Written in Fortran](#bmi-models-written-in-fortran)
+    - [Enabling Fortran Integration](#enabling-fortran-integration)
+    - [ISO C Binding Middleware](#iso-c-binding-middleware)
+    - [A Compiled Shared Library](#a-compiled-shared-library)
+      - [Required Additional Fortran Registration Function](#required-additional-fortran-registration-function)
+  - [BMI Models Written in Python](#bmi-models-written-in-python)
+    - [Enabling Python Integration](#enabling-python-integration)
+    - [BMI Python Model as Package Class](#bmi-python-model-as-package-class)
+    - [BMI Python Example](#bmi-python-example)
+  - [Multi-Module BMI Formulations](#multi-module-bmi-formulations)
 
 ## Summary
 
@@ -27,13 +43,14 @@ The basic outline of steps needed to work with an external BMI model is:
 
 [//]: # (TODO: what does the realization config need to look like?)
 
-[//]: # (TODO: Python, C++, and Fortran )
+[//]: # (TODO: Python )
 
 ## Formulation Config
 
 The catchment entry in the formulation/realization config must be set to used the appropriate type for the associated BMI realization, via the formulation's `name` JSON element.  E.g.:
 
-      ...
+```javascript
+      //...
       "cat-87": {
            "formulations": [
                {
@@ -41,11 +58,16 @@ The catchment entry in the formulation/realization config must be set to used th
                    "params": { ... }
                }
            }
-      ...
+      //...
+```
 
 Valid name values for the currently implemented BMI formulation types are:
 
+* `bmi_c++`
 * `bmi_c`
+* `bmi_fortran`
+* `bmi_python`
+* `bmi_multi`
 
 Because of the generalization of the interface to the model, the required and optional parameters for all the BMI formulation types are the same.
 
@@ -92,6 +114,10 @@ There are some special BMI formulation config parameters which are required in c
   * Name of the [bootstrapping pointer registration function](#additional-bootstrapping-function-needed) in the external module 
   * required for C-based BMI modules if the module's implemented function is not named `register_bmi` as discussed [here](#additional-bootstrapping-function-needed)
   * only needed for C-based BMI modules
+* `python_type`
+  * Name of the Python class that represents a BMI model, including the package name as appropriate.
+  * Required for Python-based BMI modules
+  * Only needed for Python-based modules
 
 ### Optional Parameters
 * `variables_names_map`
@@ -185,6 +211,108 @@ This is needed both due to the design of the **C** language variant of BMI, and 
 
 Future versions of NextGen will provide alternative ways to declaratively configure function names from a BMI C library so they can individually be dynamically loaded.
 
+## BMI Models Written in C++
+
+- [BMI C++ Model As Shared Library](#bmi-c-model-as-shared-library-1)
+  - [Dynamic Loading](#dynamic-loading-1)
+  - [Additional Bootstrapping Functions Needed](#additional-bootstrapping-functions-needed)
+    - [Why?](#why-1)
+- [BMI C++ Example](#bmi-c-example)
+
+You can implement a model in C++ by writing an object which implements the [BMI C++ interface](https://github.com/csdms/bmi-cxx).
+
+### BMI C++ Model As Shared Library
+
+For **C++** models, the model should be packaged as a pre-compiled shared library. Support for loading of C++ modules/libraries is always enabled, so no build system flags are required. 
+#### Dynamic Loading
+
+As noted [above](#semi-optional-parameters), the path to the shared library must be provided in the configuration so that the module can be loaded at runtime.
+
+#### Additional Bootstrapping Functions Needed
+
+BMI models written in **C++** should implement two **C** functions declared with `extern "C"`. These functions instantiate and destroy a **C++** BMI model object. By default, these functions are expected to be named `bmi_model_create` and `bmi_model_destroy`, and have signatures like the following:
+
+```c++
+    extern "C"
+    {
+      /**
+      * @brief Construct this BMI instance as a normal C++ object, to be returned to the framework.
+      * @return A pointer to the newly allocated instance.
+      */
+      MyBmiModelClass *bmi_model_create()
+      {
+        /* You can do anything necessary to set up a model instance here, but do NOT call `Initialize()`. */
+        return new MyBmiModelClass(/* e.g. any applicable constructor parameters */);
+      }
+
+      /**
+        * @brief Destroy/free an instance created with @see bmi_model_create
+        * @param ptr 
+        */
+      void bmi_model_destroy(MyBmiModelClass *ptr)
+      {
+        /* You can do anything necessary to dispose of a model instance here, but note that `Finalize()` 
+         * will already have been called!
+        delete ptr;
+      }
+    }
+```
+
+It is possible to configure different *names* for the functions within the NGen realization config by using the keys `create_function` and `destroy_function`, but the return types and parameters must be as shown above.
+
+An example of implementing these functions can be found in the test harness implementation at [/extern/test_bmi_cpp/include/test_bmi_cpp.hpp](../extern/test_bmi_cpp/include/test_bmi_cpp.hpp).
+##### Why?
+
+Counterintuitively, loading C++ shared libraries into a C++ executable (such as the NextGen framework) requires the use of standard C functions. This is because all C++ compilers "mangle" the names of C++ functions and classes in order to support polymorphism and other scenarios where C++ symbols are allowed to have the same name (which is not possible in standard C). This "mangling" algorithm is not specified or defined so different compilers may use different methods--and even different versions of the same compiler can vary--such that it is not possible to predict the symbol name for any C++ class or function in a compiled shared library. Only by using `extern "C"` will the compiler produce a library with a predictable symbol name (and no two functions having the `extern "C"` declaration may have the same name!), so this mechanism is used whenever dynamic loading of C++ library classes is needed. 
+
+Similarly, different compilers (or different compiler versions) may implement `delete` differently, or layout private memory of an object differently. This is why the `bmi_model_destroy` function should be implemented in the library where the object was instantiated: to prevent compiler behavior differences from potentially freeing memory incorrectly.
+
+### BMI C++ Example
+
+An example implementation for an appropriate BMI model as a **C++** shared library is provided in the project [here](../extern/test_bmi_cpp).
+
+## BMI Models Written in Python
+
+  - [Enabling Python Integration](#enabling-python-integration)
+  - [BMI Python Model as Package Class](#bmi-python-model-as-package-class)
+  - [BMI Python Example](#bmi-python-example)
+
+### Enabling Python Integration
+
+Python integration is controlled with the CMake build flag `NGEN_ACTIVATE_PYTHON`, however this currently defaults to "On"--you would need to turn this off if Python is not available in your environment. See [the Dependencies documentation](DEPENDENCIES.md#python-3-libraries) for specifics on Python requirements, but in summary you will need a working Python environment with NumPy installed. You can set up a Python environment anywhere with the usual environment variables, but note that ngen will look for a Python environment in the build directory named `.venv` or `venv` by default. The appropriate Python environment should be active in the shell when ngen is run.
+
+For Python BMI models specifically, you will also need to install the [bmipy](https://github.com/csdms/bmi-python) package, which provides a base class for Python BMI models.
+
+### BMI Python Model as Package Class
+
+To use a Python BMI model, the model needs to be installed as a package in the Python environment and the package must have a class that extends bmipy, like so
+
+```python
+from bmipy import Bmi
+class bmi_model(Bmi):
+    ...
+```
+
+**TIP:** If you are actively developing a Python BMI model, you may want to [install your package with the `-e` flag](https://pip.pypa.io/en/stable/topics/local-project-installs/#editable-installs).
+
+As noted above, Python modules require the package and class name to be specified in the realization config via the `python_class` key, such as:
+
+```javascript
+{
+  "global": {
+    "formulations": [
+        { 
+            "name": "bmi_python",
+            "params": {
+                "python_type": "mypackage.bmi_model",
+                "model_type_name": "bmi_model",
+                //...
+```
+
+### BMI Python Example
+
+An example implementation for an appropriate BMI model as a **Python** class is [provided in the project](../extern/test_bmi_py), or you can examine the CSDMS-provided [example Python model](https://github.com/csdms/bmi-example-python).
+
 ## BMI Models Written in Fortran
 
 * [Enabling Fortran Integration](#enabling-fortran-integration)
@@ -208,19 +336,19 @@ The proxy functions require an opaque handle to a created BMI Fortran object to 
 Because of the use of `iso_c_bindings`, integrating with a Fortran BMI module works very similarly to integrating with a C BMI module, where a [shared library](#bmi-c-model-as-shared-library) is [dynamically loaded](#dynamic-loading).  An extra [bootstrapping registration function](#required-additional-fortran-registration-function) is also, again, required.
 
 #### Required Additional Fortran Registration Function
-[As with C](#additional-bootstrapping-function-needed), a registration function must be provided by the module, beyond what is implemented for BMI.  It should look very similar to the example below.  In fact, it is likely sufficient to simply modify the `use bminoahmp` and `type(bmi_noahmp), target, save :: bmi_model` lines to suit the module in question.
+[As with C](#additional-bootstrapping-function-needed), a registration function must be provided by the module, beyond what is implemented for BMI.  It should look very similar to the example below.  In fact, it is likely sufficient to simply modify the `use bminoahowp` and `type(bmi_noahowp), target, save :: bmi_model` lines to suit the module in question.
 
 This function should receive an opaque pointer and set it to point to a created BMI object of the appropriate type for the module.  Note that while `save` is being used in a way that persists only the initial object, since this will be used within the scope of a dynamic library loaded specifically for working with a particular catchment formulation, it should not cause issues.
 
 ```fortran
 function register_bmi(this) result(bmi_status) bind(C, name="register_bmi")
       use, intrinsic:: iso_c_binding, only: c_ptr, c_loc, c_int
-      use bminoahmp
+      use bminoahowp
       implicit none
       type(c_ptr) :: this ! If not value, then from the C perspective `this` is a void**
       integer(kind=c_int) :: bmi_status
       !Create the momdel instance to use
-      type(bmi_noahmp), target, save :: bmi_model !should be safe, since this will only be used once within scope of dynamically loaded library
+      type(bmi_noahowp), target, save :: bmi_model !should be safe, since this will only be used once within scope of dynamically loaded library
       !Create a simple pointer wrapper
       type(box), pointer :: bmi_box
 
@@ -256,6 +384,29 @@ A few other items of note:
       * since modules get executed in order of configuration, "earlier" and "later" are with respect to the order they are defined in the ``modules`` config list
 * the framework allows independent configuration of the `uses_forcing_file` property among the individual sub-formulations, although this is not generally recommended
 * configuration of `variables_names_map` maps a given variable to a variable name of the directly 
+* it is now possible to have an earlier nested module use as a provider (for one of its inputs) a later nested module, as long as a default value is configured
+  * a collection of variable default values can be given in the formulation config at the top level by providing an entry in `default_output_values` with the variable's mapped configuration alias (or just variable name if it is unique) and the default value:
+```javascript
+{
+  "global": {
+    "formulations": [
+      {
+        "name": "bmi_multi",
+        "params": {
+          "model_type_name": "bmi_multi_noahmp_cfe",
+          "forcing_file": "",
+          "init_config": "",
+          "allow_exceed_end_time": true,
+          "main_output_variable": "Q_OUT",
+          "default_output_values": [
+            {
+              "name": "QINSUR",
+              "value": 42.0
+            }
+          ],
+          "modules": [
+...
+```
 
 
 
