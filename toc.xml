@@ -673,6 +673,7 @@
         </topic>
         <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html">
           <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#a17faef997ef12990c512aa418b8f3f92"/>
+          <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#aec2ef7ba1398e2bf989c2018f5a09364"/>
           <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#a9ac4ee68e42574202f43662d04b0ffd8"/>
           <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#a5ab3c315b661b44e1fc52c3274f89b2f"/>
           <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#a83e8f797646c87ca9e0b7a4d2147da9d"/>
@@ -720,13 +721,13 @@
           <topic label="visit" href="classgeojson_1_1_feature_visitor.html#a2676b1f6dbb3071b3d32df3712b43855"/>
         </topic>
         <topic label="JSONProperty" href="classgeojson_1_1_j_s_o_n_property.html">
-          <topic label="PropertyVisitor" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html">
-            <topic label="PropertyVisitor" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#ac88a4bab47315029c8ba4c3c37136974"/>
-            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#af201c7276c498f14bd04897689d353b7"/>
-            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#a54c0c3ea2424a202283d386a0e005402"/>
-            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#ae851f84d1d8e03b576e205afe692d76a"/>
-            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#af60466f3ab263485c34e45371aaf7989"/>
-            <topic label="vec" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#ac23d77aed125304248e05760c2738133"/>
+          <topic label="AsVectorVisitor" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html">
+            <topic label="AsVectorVisitor" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a5799c960bad5171fede3d518204093b9"/>
+            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a42bfc02aaf6e2de7a9dcb7475f40e64b"/>
+            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a214aedf3b3e73ed4f5de14f0806675d4"/>
+            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a7e97290db6eaa65e9485563af7579620"/>
+            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#aac213898d13bd98b01fe59c0ee7becc6"/>
+            <topic label="vec" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#ab014d75505e8ff9be2fef989bb03ce69"/>
           </topic>
           <topic label="JSONProperty" href="classgeojson_1_1_j_s_o_n_property.html#a67c06aa54d9f12507f8255ad3d6d860d"/>
           <topic label="JSONProperty" href="classgeojson_1_1_j_s_o_n_property.html#a8124b60e4f0a5d500d7635205344a158"/>
@@ -758,13 +759,9 @@
           <topic label="has_key" href="classgeojson_1_1_j_s_o_n_property.html#afe12f98e6dafc1abb943d3865e601ec1"/>
           <topic label="keys" href="classgeojson_1_1_j_s_o_n_property.html#a11b0d4cecda0a3f85cd9034d8638ac73"/>
           <topic label="operator!=" href="classgeojson_1_1_j_s_o_n_property.html#ae1815462ba6862ac036d8ce098b7d941"/>
-          <topic label="operator==" href="classgeojson_1_1_j_s_o_n_property.html#a4a15af4438529f165427486327d67e8e"/>
-          <topic label="boolean" href="classgeojson_1_1_j_s_o_n_property.html#a9797564a74d052880a95704bcbb5ae5e"/>
+          <topic label="operator==" href="classgeojson_1_1_j_s_o_n_property.html#a06efd343c58f799d6636b04be36f8d5a"/>
           <topic label="data" href="classgeojson_1_1_j_s_o_n_property.html#af405297de7dae29f9bf8ee584ba08858"/>
           <topic label="key" href="classgeojson_1_1_j_s_o_n_property.html#a3fe2ade16ff994a3e9e3fbf106ba690a"/>
-          <topic label="natural_number" href="classgeojson_1_1_j_s_o_n_property.html#ab0c6d37af263c7ba85a34d56275e2b8f"/>
-          <topic label="real_number" href="classgeojson_1_1_j_s_o_n_property.html#ab682d395ee8b90c23bf2f82c1bc556e1"/>
-          <topic label="string" href="classgeojson_1_1_j_s_o_n_property.html#a864b411ee1ce948aef80e9cbc8e47e4a"/>
           <topic label="type" href="classgeojson_1_1_j_s_o_n_property.html#a1d92b4f0ec6df2fef86a7b4ef183973b"/>
           <topic label="value_list" href="classgeojson_1_1_j_s_o_n_property.html#a1bd38dc99c8773465bbd8989b9f563ca"/>
           <topic label="values" href="classgeojson_1_1_j_s_o_n_property.html#ae1d7def48bf2d357a5a1b086930a74b2"/>
@@ -830,8 +827,12 @@
           <topic label="type" href="classgeojson_1_1_line_string_feature.html#ac2786341bb4e570fa8d60fefe18dbe0f"/>
         </topic>
         <topic label="List" href="structgeojson_1_1_list.html">
+          <topic label="List" href="structgeojson_1_1_list.html#a42c12fa9ad6bb881589e5acb3319fe4e"/>
+          <topic label="get_values" href="structgeojson_1_1_list.html#a17e1299e5d8015bf47feb402cd0585be"/>
+          <topic label="operator==" href="structgeojson_1_1_list.html#a6e5a3a1f7c53785ef22743cff3dc5d91"/>
+          <topic label="push_back" href="structgeojson_1_1_list.html#a9f45981e383d8ad0cc5679e93420f3b1"/>
           <topic label="operator&lt;&lt;" href="structgeojson_1_1_list.html#aff28ac43c013d316714e52f7dd35765e"/>
-          <topic label="values" href="structgeojson_1_1_list.html#ad3a3e7534c1e280d0f958b65d2e5c974"/>
+          <topic label="values" href="structgeojson_1_1_list.html#af53a8a24c290efe2a19958f898175c69"/>
         </topic>
         <topic label="MultiLineStringFeature" href="classgeojson_1_1_multi_line_string_feature.html">
           <topic label="MultiLineStringFeature" href="classgeojson_1_1_multi_line_string_feature.html#aa81c8d5ff880544b87b792258be1ae2a"/>
@@ -1014,8 +1015,10 @@
           <topic label="type" href="classgeojson_1_1_multi_polygon_feature.html#ac2786341bb4e570fa8d60fefe18dbe0f"/>
         </topic>
         <topic label="Object" href="structgeojson_1_1_object.html">
+          <topic label="Object" href="structgeojson_1_1_object.html#aaefa12425c4e5fe8ff462a124eacc528"/>
+          <topic label="operator==" href="structgeojson_1_1_object.html#a7e233aa5767b7df4b602265bd6752504"/>
           <topic label="operator&lt;&lt;" href="structgeojson_1_1_object.html#ab61122231c92c4dcc8c7d1479044815e"/>
-          <topic label="values" href="structgeojson_1_1_object.html#ad425a1f081e96f36bd3548e8fb7578bb"/>
+          <topic label="values" href="structgeojson_1_1_object.html#a5900b6b42c266ee090cff113c2024ea4"/>
         </topic>
         <topic label="PointFeature" href="classgeojson_1_1_point_feature.html">
           <topic label="PointFeature" href="classgeojson_1_1_point_feature.html#a59370cc9ac5d234a229d04f42ed54385"/>
@@ -1178,7 +1181,7 @@
           <topic label="List" href="namespacegeojson.html#a972cd4a487858a36473c775ac360f361a4ee29ca12c7d126654bd0e5275de6135"/>
           <topic label="Object" href="namespacegeojson.html#a972cd4a487858a36473c775ac360f361a497031794414a552435f90151ac3b54b"/>
         </topic>
-        <topic label="build_collection" href="namespacegeojson.html#a451eeb84b57ff5d1d2123312ea8b2374"/>
+        <topic label="build_collection" href="namespacegeojson.html#a6c56f04132a1174ba51a89356713e209"/>
         <topic label="build_feature" href="namespacegeojson.html#a9c216b34a0daddc5c999f512e06125ed"/>
         <topic label="build_geometry" href="namespacegeojson.html#a5c82b2a9948b6f057381bf16e197bde4"/>
         <topic label="build_linestring" href="namespacegeojson.html#a5da2bcd4b8b0e11f7de4508d134ef244"/>
@@ -1190,7 +1193,7 @@
         <topic label="contains" href="namespacegeojson.html#a2fd0ff0c76d9798103057ccaf435b714"/>
         <topic label="contains" href="namespacegeojson.html#a9ad46c0f15062ad9678a7ebacb8744db"/>
         <topic label="get_geometry_type" href="namespacegeojson.html#ab0d9763d1e5c2779a05a0b98dac3581c"/>
-        <topic label="get_propertytype_name" href="namespacegeojson.html#a4ff2b57b059743e853ab30671712c157"/>
+        <topic label="get_propertytype_name" href="namespacegeojson.html#a51a3ed6d91b88684d46710614638d53b"/>
         <topic label="get_shape" href="namespacegeojson.html#a5fa652fcd4985537f8f9060c77d55b3d"/>
         <topic label="linestring" href="namespacegeojson.html#a6f75554e907f047ae914eadf3d61c43d"/>
         <topic label="multilinestring" href="namespacegeojson.html#af1cddc2efbfbf791ed06243ba22877cb"/>
@@ -1351,7 +1354,7 @@
           <topic label="destination_nexuses" href="classhy__features_1_1_h_y___features.html#a637fcce4f0f5e4a306543af357bf2cbb"/>
           <topic label="nexus_at" href="classhy__features_1_1_h_y___features.html#aa6af8c094aabd4c07f99b4011e228fea"/>
           <topic label="nexuses" href="classhy__features_1_1_h_y___features.html#a133814bb22aa41a0ad1827cb68561037"/>
-          <topic label="validate_dendridic" href="classhy__features_1_1_h_y___features.html#ab70dddca9d2fb06eef4dd578fcd5eeed"/>
+          <topic label="validate_dendritic" href="classhy__features_1_1_h_y___features.html#a3a28c4767f2f53b70d200148de764d9e"/>
           <topic label="_catchments" href="classhy__features_1_1_h_y___features.html#afc8c857297e0c07979d92c6a864544d1"/>
           <topic label="_nexuses" href="classhy__features_1_1_h_y___features.html#af4e9887f4d592bd84d9d68f027d5725a"/>
           <topic label="formulations" href="classhy__features_1_1_h_y___features.html#a44dc3f3c851960bb138e5ddca70c27d0"/>
@@ -1556,7 +1559,6 @@
             <topic label="GetStartTime" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a3efe91aae5bff8829b14ecde76326f4d"/>
             <topic label="GetTimeStep" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#ada25ab304eae90b46408f7f9d77c5d8c"/>
             <topic label="GetTimeUnits" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#aa9f01effaff62b863230b1f0727b4b22"/>
-            <topic label="GetValue" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#ae2b10eaa34ce398a1a7dd4f850cb04e9"/>
             <topic label="GetValue" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a2d15cade3652d580838f0b74c8e0f5ba"/>
             <topic label="GetValueAtIndices" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a9e2a2062bc3680b0f0f9be054c51f18d"/>
             <topic label="GetValuePtr" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a560ec71847532fc2fd0a101e23cbaf48"/>
@@ -1568,7 +1570,6 @@
             <topic label="GetVarType" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a3c386edbfd2f2efaf0a988d4dfe2f8e3"/>
             <topic label="GetVarUnits" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#af9480c18092311e95bc0fb263b906101"/>
             <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a43ba9007b2536787eb95a330167068ff"/>
-            <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#acf73770254a92bc6e6a565aafcf261b4"/>
             <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a48f6705c514c7332edd8d59756ff7ca6"/>
             <topic label="inner_get_input_item_count" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#af842e9fa306ecfa967fe4cee07f4b5fa"/>
             <topic label="inner_get_output_item_count" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a06bbf0b8e0c99f860fc60679152269d5"/>
@@ -1649,7 +1650,6 @@
             <topic label="GetStartTime" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#acc80b86af4c9a9b925ae69e6e5648da3"/>
             <topic label="GetTimeStep" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a1cc8f64a26e66c172ec1b18b0ffd9416"/>
             <topic label="GetTimeUnits" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#ace1062b59c99e99e4ea2db034bb19e27"/>
-            <topic label="GetValue" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a2fe6a94dae9c93c935ba6dc274a8ceab"/>
             <topic label="GetValue" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a9bea0cc777d5a640dc7f89dbe5f6d789"/>
             <topic label="GetValueAtIndices" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#af9dd2629499833ef47718489a31d7929"/>
             <topic label="GetValuePtr" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a01ef25ce848b6b9ac9622ea974ae96d5"/>
@@ -1661,7 +1661,6 @@
             <topic label="GetVarType" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a6a9f11b324fa7d84303f98636ba8fecf"/>
             <topic label="GetVarUnits" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a841e084e84ba0325b77e1a868c7407d6"/>
             <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a43ba9007b2536787eb95a330167068ff"/>
-            <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#acf73770254a92bc6e6a565aafcf261b4"/>
             <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a48f6705c514c7332edd8d59756ff7ca6"/>
             <topic label="is_model_initialized" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a2902dc0ab6801565909137e72fd1f24a"/>
             <topic label="isInitialized" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#ad2f092a3ad436e555199eba325333b0b"/>
@@ -1785,7 +1784,7 @@
           <topic label="create_formulation" href="classrealization_1_1_bmi___c___formulation.html#ac24b58505cb49f6594fd79fec5005014"/>
           <topic label="determine_model_time_offset" href="classrealization_1_1_bmi___c___formulation.html#a39cf248257ea2a34052fa65ad08bf2ba"/>
           <topic label="get_allow_model_exceed_end_time" href="classrealization_1_1_bmi___c___formulation.html#ac6aeccf2c3eacc748f0e3c4dc4360903"/>
-          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___c___formulation.html#a402d062a27dea612bb55eca9b4a37cc8"/>
+          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___c___formulation.html#ab2fd3b0f141f6afb196d61e3ce1d7311"/>
           <topic label="get_bmi_init_config" href="classrealization_1_1_bmi___c___formulation.html#a5373b7a714024935f72432dd45dfc6ba"/>
           <topic label="get_bmi_input_variables" href="classrealization_1_1_bmi___c___formulation.html#a4dd38ab58f5d4574198b0090074fe7e1"/>
           <topic label="get_bmi_main_output_var" href="classrealization_1_1_bmi___c___formulation.html#aa3d5c6575d0323fe28b21ac4b079eba5"/>
@@ -1907,7 +1906,7 @@
           <topic label="create_formulation" href="classrealization_1_1_bmi___cpp___formulation.html#ac24b58505cb49f6594fd79fec5005014"/>
           <topic label="determine_model_time_offset" href="classrealization_1_1_bmi___cpp___formulation.html#a39cf248257ea2a34052fa65ad08bf2ba"/>
           <topic label="get_allow_model_exceed_end_time" href="classrealization_1_1_bmi___cpp___formulation.html#ac6aeccf2c3eacc748f0e3c4dc4360903"/>
-          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___cpp___formulation.html#a402d062a27dea612bb55eca9b4a37cc8"/>
+          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___cpp___formulation.html#ab2fd3b0f141f6afb196d61e3ce1d7311"/>
           <topic label="get_bmi_init_config" href="classrealization_1_1_bmi___cpp___formulation.html#a5373b7a714024935f72432dd45dfc6ba"/>
           <topic label="get_bmi_input_variables" href="classrealization_1_1_bmi___cpp___formulation.html#a4dd38ab58f5d4574198b0090074fe7e1"/>
           <topic label="get_bmi_main_output_var" href="classrealization_1_1_bmi___cpp___formulation.html#aa3d5c6575d0323fe28b21ac4b079eba5"/>
@@ -2106,7 +2105,7 @@
           <topic label="create_formulation" href="classrealization_1_1_bmi___module___formulation.html#ac24b58505cb49f6594fd79fec5005014"/>
           <topic label="determine_model_time_offset" href="classrealization_1_1_bmi___module___formulation.html#a39cf248257ea2a34052fa65ad08bf2ba"/>
           <topic label="get_allow_model_exceed_end_time" href="classrealization_1_1_bmi___module___formulation.html#ac6aeccf2c3eacc748f0e3c4dc4360903"/>
-          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___module___formulation.html#a402d062a27dea612bb55eca9b4a37cc8"/>
+          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___module___formulation.html#ab2fd3b0f141f6afb196d61e3ce1d7311"/>
           <topic label="get_bmi_init_config" href="classrealization_1_1_bmi___module___formulation.html#a5373b7a714024935f72432dd45dfc6ba"/>
           <topic label="get_bmi_input_variables" href="classrealization_1_1_bmi___module___formulation.html#a4dd38ab58f5d4574198b0090074fe7e1"/>
           <topic label="get_bmi_main_output_var" href="classrealization_1_1_bmi___module___formulation.html#aa3d5c6575d0323fe28b21ac4b079eba5"/>
@@ -2227,7 +2226,7 @@
           <topic label="create_multi_formulation" href="classrealization_1_1_bmi___multi___formulation.html#a8694f5e94f40224efca11a73892da8ff"/>
           <topic label="determine_et_formulation_index" href="classrealization_1_1_bmi___multi___formulation.html#a29c47ff4addf5a687b9cf431c9c33a87"/>
           <topic label="get_allow_model_exceed_end_time" href="classrealization_1_1_bmi___multi___formulation.html#aca4c20aff9b42fa0d184cfe49f3dabde"/>
-          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___multi___formulation.html#a4cd1bed0e1532b100a7ca669279ed527"/>
+          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___multi___formulation.html#ac431cc94c2dc27ea1280107465b5ac64"/>
           <topic label="get_bmi_input_variables" href="classrealization_1_1_bmi___multi___formulation.html#ad3f57bbaedee15d136af697dc24f2625"/>
           <topic label="get_bmi_main_output_var" href="classrealization_1_1_bmi___multi___formulation.html#aa3d5c6575d0323fe28b21ac4b079eba5"/>
           <topic label="get_bmi_model_start_time_forcing_offset_s" href="classrealization_1_1_bmi___multi___formulation.html#a28f2d6c42a794b1849026a338828be32"/>
@@ -2411,8 +2410,8 @@
           <topic label="construct_missing_formulation" href="classrealization_1_1_formulation___manager.html#ad1480dcad2897e10a445f1e53eb9b8af"/>
           <topic label="contains" href="classrealization_1_1_formulation___manager.html#ae28572ed2d9c6bf7849331d889b3c51b"/>
           <topic label="end" href="classrealization_1_1_formulation___manager.html#a6c5749e590142378b02976f6802407bd"/>
+          <topic label="get_forcing_params" href="classrealization_1_1_formulation___manager.html#ad08f6399a29ed66671b3dd1e6e2f7a39"/>
           <topic label="get_formulation" href="classrealization_1_1_formulation___manager.html#ab3188606a0077deba49fe03e0ae76c43"/>
-          <topic label="get_global_forcing_params" href="classrealization_1_1_formulation___manager.html#a84b5e11580f6ebeed689ddce25b6d3e1"/>
           <topic label="get_size" href="classrealization_1_1_formulation___manager.html#a3d0b2db8f821d4b05502a04fa3f01870"/>
           <topic label="get_t_route_config_file_with_path" href="classrealization_1_1_formulation___manager.html#af98f0237deac6fe02782231b5ba41ea7"/>
           <topic label="get_using_routing" href="classrealization_1_1_formulation___manager.html#a599aadb9ffea1e8c28cbd010b3160bd7"/>
@@ -3206,6 +3205,7 @@
         </topic>
         <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html">
           <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#a17faef997ef12990c512aa418b8f3f92"/>
+          <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#aec2ef7ba1398e2bf989c2018f5a09364"/>
           <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#a9ac4ee68e42574202f43662d04b0ffd8"/>
           <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#a5ab3c315b661b44e1fc52c3274f89b2f"/>
           <topic label="FeatureCollection" href="classgeojson_1_1_feature_collection.html#a83e8f797646c87ca9e0b7a4d2147da9d"/>
@@ -3253,13 +3253,13 @@
           <topic label="visit" href="classgeojson_1_1_feature_visitor.html#a2676b1f6dbb3071b3d32df3712b43855"/>
         </topic>
         <topic label="JSONProperty" href="classgeojson_1_1_j_s_o_n_property.html">
-          <topic label="PropertyVisitor" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html">
-            <topic label="PropertyVisitor" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#ac88a4bab47315029c8ba4c3c37136974"/>
-            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#af201c7276c498f14bd04897689d353b7"/>
-            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#a54c0c3ea2424a202283d386a0e005402"/>
-            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#ae851f84d1d8e03b576e205afe692d76a"/>
-            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#af60466f3ab263485c34e45371aaf7989"/>
-            <topic label="vec" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html#ac23d77aed125304248e05760c2738133"/>
+          <topic label="AsVectorVisitor" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html">
+            <topic label="AsVectorVisitor" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a5799c960bad5171fede3d518204093b9"/>
+            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a42bfc02aaf6e2de7a9dcb7475f40e64b"/>
+            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a214aedf3b3e73ed4f5de14f0806675d4"/>
+            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a7e97290db6eaa65e9485563af7579620"/>
+            <topic label="operator()" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#aac213898d13bd98b01fe59c0ee7becc6"/>
+            <topic label="vec" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#ab014d75505e8ff9be2fef989bb03ce69"/>
           </topic>
           <topic label="JSONProperty" href="classgeojson_1_1_j_s_o_n_property.html#a67c06aa54d9f12507f8255ad3d6d860d"/>
           <topic label="JSONProperty" href="classgeojson_1_1_j_s_o_n_property.html#a8124b60e4f0a5d500d7635205344a158"/>
@@ -3291,13 +3291,9 @@
           <topic label="has_key" href="classgeojson_1_1_j_s_o_n_property.html#afe12f98e6dafc1abb943d3865e601ec1"/>
           <topic label="keys" href="classgeojson_1_1_j_s_o_n_property.html#a11b0d4cecda0a3f85cd9034d8638ac73"/>
           <topic label="operator!=" href="classgeojson_1_1_j_s_o_n_property.html#ae1815462ba6862ac036d8ce098b7d941"/>
-          <topic label="operator==" href="classgeojson_1_1_j_s_o_n_property.html#a4a15af4438529f165427486327d67e8e"/>
-          <topic label="boolean" href="classgeojson_1_1_j_s_o_n_property.html#a9797564a74d052880a95704bcbb5ae5e"/>
+          <topic label="operator==" href="classgeojson_1_1_j_s_o_n_property.html#a06efd343c58f799d6636b04be36f8d5a"/>
           <topic label="data" href="classgeojson_1_1_j_s_o_n_property.html#af405297de7dae29f9bf8ee584ba08858"/>
           <topic label="key" href="classgeojson_1_1_j_s_o_n_property.html#a3fe2ade16ff994a3e9e3fbf106ba690a"/>
-          <topic label="natural_number" href="classgeojson_1_1_j_s_o_n_property.html#ab0c6d37af263c7ba85a34d56275e2b8f"/>
-          <topic label="real_number" href="classgeojson_1_1_j_s_o_n_property.html#ab682d395ee8b90c23bf2f82c1bc556e1"/>
-          <topic label="string" href="classgeojson_1_1_j_s_o_n_property.html#a864b411ee1ce948aef80e9cbc8e47e4a"/>
           <topic label="type" href="classgeojson_1_1_j_s_o_n_property.html#a1d92b4f0ec6df2fef86a7b4ef183973b"/>
           <topic label="value_list" href="classgeojson_1_1_j_s_o_n_property.html#a1bd38dc99c8773465bbd8989b9f563ca"/>
           <topic label="values" href="classgeojson_1_1_j_s_o_n_property.html#ae1d7def48bf2d357a5a1b086930a74b2"/>
@@ -3363,8 +3359,12 @@
           <topic label="type" href="classgeojson_1_1_line_string_feature.html#ac2786341bb4e570fa8d60fefe18dbe0f"/>
         </topic>
         <topic label="List" href="structgeojson_1_1_list.html">
+          <topic label="List" href="structgeojson_1_1_list.html#a42c12fa9ad6bb881589e5acb3319fe4e"/>
+          <topic label="get_values" href="structgeojson_1_1_list.html#a17e1299e5d8015bf47feb402cd0585be"/>
+          <topic label="operator==" href="structgeojson_1_1_list.html#a6e5a3a1f7c53785ef22743cff3dc5d91"/>
+          <topic label="push_back" href="structgeojson_1_1_list.html#a9f45981e383d8ad0cc5679e93420f3b1"/>
           <topic label="operator&lt;&lt;" href="structgeojson_1_1_list.html#aff28ac43c013d316714e52f7dd35765e"/>
-          <topic label="values" href="structgeojson_1_1_list.html#ad3a3e7534c1e280d0f958b65d2e5c974"/>
+          <topic label="values" href="structgeojson_1_1_list.html#af53a8a24c290efe2a19958f898175c69"/>
         </topic>
         <topic label="MultiLineStringFeature" href="classgeojson_1_1_multi_line_string_feature.html">
           <topic label="MultiLineStringFeature" href="classgeojson_1_1_multi_line_string_feature.html#aa81c8d5ff880544b87b792258be1ae2a"/>
@@ -3547,8 +3547,10 @@
           <topic label="type" href="classgeojson_1_1_multi_polygon_feature.html#ac2786341bb4e570fa8d60fefe18dbe0f"/>
         </topic>
         <topic label="Object" href="structgeojson_1_1_object.html">
+          <topic label="Object" href="structgeojson_1_1_object.html#aaefa12425c4e5fe8ff462a124eacc528"/>
+          <topic label="operator==" href="structgeojson_1_1_object.html#a7e233aa5767b7df4b602265bd6752504"/>
           <topic label="operator&lt;&lt;" href="structgeojson_1_1_object.html#ab61122231c92c4dcc8c7d1479044815e"/>
-          <topic label="values" href="structgeojson_1_1_object.html#ad425a1f081e96f36bd3548e8fb7578bb"/>
+          <topic label="values" href="structgeojson_1_1_object.html#a5900b6b42c266ee090cff113c2024ea4"/>
         </topic>
         <topic label="PointFeature" href="classgeojson_1_1_point_feature.html">
           <topic label="PointFeature" href="classgeojson_1_1_point_feature.html#a59370cc9ac5d234a229d04f42ed54385"/>
@@ -3782,7 +3784,7 @@
           <topic label="destination_nexuses" href="classhy__features_1_1_h_y___features.html#a637fcce4f0f5e4a306543af357bf2cbb"/>
           <topic label="nexus_at" href="classhy__features_1_1_h_y___features.html#aa6af8c094aabd4c07f99b4011e228fea"/>
           <topic label="nexuses" href="classhy__features_1_1_h_y___features.html#a133814bb22aa41a0ad1827cb68561037"/>
-          <topic label="validate_dendridic" href="classhy__features_1_1_h_y___features.html#ab70dddca9d2fb06eef4dd578fcd5eeed"/>
+          <topic label="validate_dendritic" href="classhy__features_1_1_h_y___features.html#a3a28c4767f2f53b70d200148de764d9e"/>
           <topic label="_catchments" href="classhy__features_1_1_h_y___features.html#afc8c857297e0c07979d92c6a864544d1"/>
           <topic label="_nexuses" href="classhy__features_1_1_h_y___features.html#af4e9887f4d592bd84d9d68f027d5725a"/>
           <topic label="formulations" href="classhy__features_1_1_h_y___features.html#a44dc3f3c851960bb138e5ddca70c27d0"/>
@@ -3984,7 +3986,6 @@
             <topic label="GetStartTime" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a3efe91aae5bff8829b14ecde76326f4d"/>
             <topic label="GetTimeStep" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#ada25ab304eae90b46408f7f9d77c5d8c"/>
             <topic label="GetTimeUnits" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#aa9f01effaff62b863230b1f0727b4b22"/>
-            <topic label="GetValue" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#ae2b10eaa34ce398a1a7dd4f850cb04e9"/>
             <topic label="GetValue" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a2d15cade3652d580838f0b74c8e0f5ba"/>
             <topic label="GetValueAtIndices" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a9e2a2062bc3680b0f0f9be054c51f18d"/>
             <topic label="GetValuePtr" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a560ec71847532fc2fd0a101e23cbaf48"/>
@@ -3996,7 +3997,6 @@
             <topic label="GetVarType" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a3c386edbfd2f2efaf0a988d4dfe2f8e3"/>
             <topic label="GetVarUnits" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#af9480c18092311e95bc0fb263b906101"/>
             <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a43ba9007b2536787eb95a330167068ff"/>
-            <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#acf73770254a92bc6e6a565aafcf261b4"/>
             <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a48f6705c514c7332edd8d59756ff7ca6"/>
             <topic label="inner_get_input_item_count" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#af842e9fa306ecfa967fe4cee07f4b5fa"/>
             <topic label="inner_get_output_item_count" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html#a06bbf0b8e0c99f860fc60679152269d5"/>
@@ -4077,7 +4077,6 @@
             <topic label="GetStartTime" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#acc80b86af4c9a9b925ae69e6e5648da3"/>
             <topic label="GetTimeStep" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a1cc8f64a26e66c172ec1b18b0ffd9416"/>
             <topic label="GetTimeUnits" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#ace1062b59c99e99e4ea2db034bb19e27"/>
-            <topic label="GetValue" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a2fe6a94dae9c93c935ba6dc274a8ceab"/>
             <topic label="GetValue" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a9bea0cc777d5a640dc7f89dbe5f6d789"/>
             <topic label="GetValueAtIndices" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#af9dd2629499833ef47718489a31d7929"/>
             <topic label="GetValuePtr" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a01ef25ce848b6b9ac9622ea974ae96d5"/>
@@ -4089,7 +4088,6 @@
             <topic label="GetVarType" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a6a9f11b324fa7d84303f98636ba8fecf"/>
             <topic label="GetVarUnits" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a841e084e84ba0325b77e1a868c7407d6"/>
             <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a43ba9007b2536787eb95a330167068ff"/>
-            <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#acf73770254a92bc6e6a565aafcf261b4"/>
             <topic label="Initialize" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a48f6705c514c7332edd8d59756ff7ca6"/>
             <topic label="is_model_initialized" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#a2902dc0ab6801565909137e72fd1f24a"/>
             <topic label="isInitialized" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html#ad2f092a3ad436e555199eba325333b0b"/>
@@ -4201,7 +4199,7 @@
           <topic label="create_formulation" href="classrealization_1_1_bmi___c___formulation.html#ac24b58505cb49f6594fd79fec5005014"/>
           <topic label="determine_model_time_offset" href="classrealization_1_1_bmi___c___formulation.html#a39cf248257ea2a34052fa65ad08bf2ba"/>
           <topic label="get_allow_model_exceed_end_time" href="classrealization_1_1_bmi___c___formulation.html#ac6aeccf2c3eacc748f0e3c4dc4360903"/>
-          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___c___formulation.html#a402d062a27dea612bb55eca9b4a37cc8"/>
+          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___c___formulation.html#ab2fd3b0f141f6afb196d61e3ce1d7311"/>
           <topic label="get_bmi_init_config" href="classrealization_1_1_bmi___c___formulation.html#a5373b7a714024935f72432dd45dfc6ba"/>
           <topic label="get_bmi_input_variables" href="classrealization_1_1_bmi___c___formulation.html#a4dd38ab58f5d4574198b0090074fe7e1"/>
           <topic label="get_bmi_main_output_var" href="classrealization_1_1_bmi___c___formulation.html#aa3d5c6575d0323fe28b21ac4b079eba5"/>
@@ -4323,7 +4321,7 @@
           <topic label="create_formulation" href="classrealization_1_1_bmi___cpp___formulation.html#ac24b58505cb49f6594fd79fec5005014"/>
           <topic label="determine_model_time_offset" href="classrealization_1_1_bmi___cpp___formulation.html#a39cf248257ea2a34052fa65ad08bf2ba"/>
           <topic label="get_allow_model_exceed_end_time" href="classrealization_1_1_bmi___cpp___formulation.html#ac6aeccf2c3eacc748f0e3c4dc4360903"/>
-          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___cpp___formulation.html#a402d062a27dea612bb55eca9b4a37cc8"/>
+          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___cpp___formulation.html#ab2fd3b0f141f6afb196d61e3ce1d7311"/>
           <topic label="get_bmi_init_config" href="classrealization_1_1_bmi___cpp___formulation.html#a5373b7a714024935f72432dd45dfc6ba"/>
           <topic label="get_bmi_input_variables" href="classrealization_1_1_bmi___cpp___formulation.html#a4dd38ab58f5d4574198b0090074fe7e1"/>
           <topic label="get_bmi_main_output_var" href="classrealization_1_1_bmi___cpp___formulation.html#aa3d5c6575d0323fe28b21ac4b079eba5"/>
@@ -4522,7 +4520,7 @@
           <topic label="create_formulation" href="classrealization_1_1_bmi___module___formulation.html#ac24b58505cb49f6594fd79fec5005014"/>
           <topic label="determine_model_time_offset" href="classrealization_1_1_bmi___module___formulation.html#a39cf248257ea2a34052fa65ad08bf2ba"/>
           <topic label="get_allow_model_exceed_end_time" href="classrealization_1_1_bmi___module___formulation.html#ac6aeccf2c3eacc748f0e3c4dc4360903"/>
-          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___module___formulation.html#a402d062a27dea612bb55eca9b4a37cc8"/>
+          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___module___formulation.html#ab2fd3b0f141f6afb196d61e3ce1d7311"/>
           <topic label="get_bmi_init_config" href="classrealization_1_1_bmi___module___formulation.html#a5373b7a714024935f72432dd45dfc6ba"/>
           <topic label="get_bmi_input_variables" href="classrealization_1_1_bmi___module___formulation.html#a4dd38ab58f5d4574198b0090074fe7e1"/>
           <topic label="get_bmi_main_output_var" href="classrealization_1_1_bmi___module___formulation.html#aa3d5c6575d0323fe28b21ac4b079eba5"/>
@@ -4643,7 +4641,7 @@
           <topic label="create_multi_formulation" href="classrealization_1_1_bmi___multi___formulation.html#a8694f5e94f40224efca11a73892da8ff"/>
           <topic label="determine_et_formulation_index" href="classrealization_1_1_bmi___multi___formulation.html#a29c47ff4addf5a687b9cf431c9c33a87"/>
           <topic label="get_allow_model_exceed_end_time" href="classrealization_1_1_bmi___multi___formulation.html#aca4c20aff9b42fa0d184cfe49f3dabde"/>
-          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___multi___formulation.html#a4cd1bed0e1532b100a7ca669279ed527"/>
+          <topic label="get_avaliable_variable_names" href="classrealization_1_1_bmi___multi___formulation.html#ac431cc94c2dc27ea1280107465b5ac64"/>
           <topic label="get_bmi_input_variables" href="classrealization_1_1_bmi___multi___formulation.html#ad3f57bbaedee15d136af697dc24f2625"/>
           <topic label="get_bmi_main_output_var" href="classrealization_1_1_bmi___multi___formulation.html#aa3d5c6575d0323fe28b21ac4b079eba5"/>
           <topic label="get_bmi_model_start_time_forcing_offset_s" href="classrealization_1_1_bmi___multi___formulation.html#a28f2d6c42a794b1849026a338828be32"/>
@@ -4827,8 +4825,8 @@
           <topic label="construct_missing_formulation" href="classrealization_1_1_formulation___manager.html#ad1480dcad2897e10a445f1e53eb9b8af"/>
           <topic label="contains" href="classrealization_1_1_formulation___manager.html#ae28572ed2d9c6bf7849331d889b3c51b"/>
           <topic label="end" href="classrealization_1_1_formulation___manager.html#a6c5749e590142378b02976f6802407bd"/>
+          <topic label="get_forcing_params" href="classrealization_1_1_formulation___manager.html#ad08f6399a29ed66671b3dd1e6e2f7a39"/>
           <topic label="get_formulation" href="classrealization_1_1_formulation___manager.html#ab3188606a0077deba49fe03e0ae76c43"/>
-          <topic label="get_global_forcing_params" href="classrealization_1_1_formulation___manager.html#a84b5e11580f6ebeed689ddce25b6d3e1"/>
           <topic label="get_size" href="classrealization_1_1_formulation___manager.html#a3d0b2db8f821d4b05502a04fa3f01870"/>
           <topic label="get_t_route_config_file_with_path" href="classrealization_1_1_formulation___manager.html#af98f0237deac6fe02782231b5ba41ea7"/>
           <topic label="get_using_routing" href="classrealization_1_1_formulation___manager.html#a599aadb9ffea1e8c28cbd010b3160bd7"/>
@@ -5440,11 +5438,11 @@
       <topic label="forcing_params" href="structforcing__params.html">
         <topic label="forcing_params" href="structforcing__params.html#a4476f96c6181db3929c57d964cc3e99f"/>
         <topic label="date_format" href="structforcing__params.html#a456da7a25cd74583931fc358ae545bbe"/>
-        <topic label="end_t" href="structforcing__params.html#a8262c953da3386a43bf323a309d5a501"/>
         <topic label="end_time" href="structforcing__params.html#a625b5e1b9db215c9dde0f753b1ec239c"/>
         <topic label="path" href="structforcing__params.html#a2f43abdd38531314c220ef34b5ee0037"/>
         <topic label="provider" href="structforcing__params.html#ade4fb727ea0eac594b7d1c84aedd9b5a"/>
-        <topic label="start_t" href="structforcing__params.html#adf1229aeb4e44be7bc262f8967ac8b11"/>
+        <topic label="simulation_end_t" href="structforcing__params.html#a3098992c702addcdc43e0a5c735bad25"/>
+        <topic label="simulation_start_t" href="structforcing__params.html#a026bcef7a3218df18cff05a9e6d204b9"/>
         <topic label="start_time" href="structforcing__params.html#a86028ec75ffd2fb7ecdb4f4ce56d66ef"/>
       </topic>
       <topic label="GIUH_Test" href="class_g_i_u_h___test.html">
@@ -6073,17 +6071,16 @@
         <topic label="models::bmi::Bmi_Adapter&lt; C &gt;" href="classmodels_1_1bmi_1_1_bmi___adapter.html">
           <topic label="models::bmi::AbstractCLibBmiAdapter&lt; C &gt;" href="classmodels_1_1bmi_1_1_abstract_c_lib_bmi_adapter.html"/>
         </topic>
-        <topic label="models::bmi::Bmi_Adapter&lt; C_Bmi &gt;" href="classmodels_1_1bmi_1_1_bmi___adapter.html">
+        <topic label="models::bmi::Bmi_Adapter&lt; C_Bmi &gt;" href="classmodels_1_1bmi_1_1_bmi___adapter.html"/>
+        <topic label="models::bmi::Bmi_Adapter&lt; Cpp_Bmi &gt;" href="classmodels_1_1bmi_1_1_bmi___adapter.html"/>
+        <topic label="models::bmi::Bmi_Adapter&lt; T &gt;" href="classmodels_1_1bmi_1_1_bmi___adapter.html">
           <topic label="models::bmi::AbstractCLibBmiAdapter&lt; C_Bmi &gt;" href="classmodels_1_1bmi_1_1_abstract_c_lib_bmi_adapter.html">
             <topic label="models::bmi::Bmi_C_Adapter" href="classmodels_1_1bmi_1_1_bmi___c___adapter.html"/>
           </topic>
-        </topic>
-        <topic label="models::bmi::Bmi_Adapter&lt; Cpp_Bmi &gt;" href="classmodels_1_1bmi_1_1_bmi___adapter.html">
           <topic label="models::bmi::AbstractCLibBmiAdapter&lt; Cpp_Bmi &gt;" href="classmodels_1_1bmi_1_1_abstract_c_lib_bmi_adapter.html">
             <topic label="models::bmi::Bmi_Cpp_Adapter" href="classmodels_1_1bmi_1_1_bmi___cpp___adapter.html"/>
           </topic>
         </topic>
-        <topic label="models::bmi::Bmi_Adapter&lt; T &gt;" href="classmodels_1_1bmi_1_1_bmi___adapter.html"/>
       </topic>
       <topic label="boost::dfs_visitor">
         <topic label="network::preorder_visitor&lt; OutputIterator &gt;" href="structnetwork_1_1preorder__visitor.html"/>
@@ -6096,7 +6093,7 @@
         <topic label="request_from_empty_nexus" href="structrequest__from__empty__nexus.html"/>
       </topic>
       <topic label="boost::static_visitor">
-        <topic label="geojson::JSONProperty::PropertyVisitor&lt; T &gt;" href="structgeojson_1_1_j_s_o_n_property_1_1_property_visitor.html"/>
+        <topic label="geojson::JSONProperty::AsVectorVisitor&lt; T &gt;" href="structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html"/>
       </topic>
       <topic label="CatchmentAggrDataSelector" href="class_catchment_aggr_data_selector.html">
         <topic label="BMIDataSelector" href="class_b_m_i_data_selector.html"/>
