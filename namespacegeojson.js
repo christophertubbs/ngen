@@ -13,6 +13,7 @@ var namespacegeojson =
     [ "Object", "structgeojson_1_1_object.html", "structgeojson_1_1_object" ],
     [ "PointFeature", "classgeojson_1_1_point_feature.html", "classgeojson_1_1_point_feature" ],
     [ "PolygonFeature", "classgeojson_1_1_polygon_feature.html", "classgeojson_1_1_polygon_feature" ],
+    [ "SentinelFeature", "classgeojson_1_1_sentinel_feature.html", "classgeojson_1_1_sentinel_feature" ],
     [ "coordinate_t", "namespacegeojson.html#a1e973c44a04c54096fb9877033c21de5", null ],
     [ "Feature", "namespacegeojson.html#ab724970a20dff6100b94e25491292748", null ],
     [ "FeatureList", "namespacegeojson.html#ad8a5fd2f9372cc99bdbe55db73a64f0d", null ],
@@ -25,7 +26,7 @@ var namespacegeojson =
     [ "multipolygon_t", "namespacegeojson.html#a2801a4aa3be7124530f8d2b8de576993", null ],
     [ "polygon_t", "namespacegeojson.html#a7e3a2b10f60ebd32d3fb01d1537350ff", null ],
     [ "PropertyMap", "namespacegeojson.html#a6eabe3c674d580523aa920438fb82d34", null ],
-    [ "PropertyVariant", "namespacegeojson.html#a0e7f78cfe2859f6b67a1d8165e22a99c", null ],
+    [ "PropertyVariant", "namespacegeojson.html#a2e7c008a580b54565782a9484242bd91", null ],
     [ "three_dimensional_coordinates", "namespacegeojson.html#a24198ccd74c3e63a59b0ec353e126352", null ],
     [ "two_dimensional_coordinates", "namespacegeojson.html#a1c9774b2c97ea8d59d6d7255ef005c81", null ],
     [ "FeatureType", "namespacegeojson.html#ad5d0756236bbc62039740c0b6258cee0", [
@@ -36,7 +37,8 @@ var namespacegeojson =
       [ "MultiPoint", "namespacegeojson.html#ad5d0756236bbc62039740c0b6258cee0a3cd60571b78c0f0e0cd78c2f96127bc0", null ],
       [ "MultiLineString", "namespacegeojson.html#ad5d0756236bbc62039740c0b6258cee0a6d0b0e1d146d35399060c10baabed5d6", null ],
       [ "MultiPolygon", "namespacegeojson.html#ad5d0756236bbc62039740c0b6258cee0a5645dd61a1073a52cf2476fd28f04a3b", null ],
-      [ "GeometryCollection", "namespacegeojson.html#ad5d0756236bbc62039740c0b6258cee0aa56fbded614f111bf2bc4741d0f5ad09", null ]
+      [ "GeometryCollection", "namespacegeojson.html#ad5d0756236bbc62039740c0b6258cee0aa56fbded614f111bf2bc4741d0f5ad09", null ],
+      [ "Sentinel", "namespacegeojson.html#ad5d0756236bbc62039740c0b6258cee0a7b71dfec5c8dd524069eed634dc0a3a5", null ]
     ] ],
     [ "JSONGeometryType", "namespacegeojson.html#a316aa4b4d9aba725f7c899a598b33cb5", [
       [ "None", "namespacegeojson.html#a316aa4b4d9aba725f7c899a598b33cb5a6adf97f83acf6453d4a6a4b1070f3754", null ],

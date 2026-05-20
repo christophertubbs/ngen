@@ -8,7 +8,7 @@ var searchData=
   ['_7ebmi_5fformulation_5',['~Bmi_Formulation',['../classrealization_1_1_bmi___formulation.html#af04ef53959ce9c63da57f1f767740401',1,'realization::Bmi_Formulation']]],
   ['_7ebmi_5fmodule_5fformulation_6',['~Bmi_Module_Formulation',['../classrealization_1_1_bmi___module___formulation.html#af4f6d7edfdca22867e9982ce5577978b',1,'realization::Bmi_Module_Formulation']]],
   ['_7ebmi_5fmulti_5fformulation_7',['~Bmi_Multi_Formulation',['../classrealization_1_1_bmi___multi___formulation.html#a6ef8f446a1fcece399fb72532e854363',1,'realization::Bmi_Multi_Formulation']]],
-  ['_7ecatchment_5fformulation_8',['~Catchment_Formulation',['../classrealization_1_1_catchment___formulation.html#ab1efe9c78511cf0cc5d9b79dc99e9881',1,'realization::Catchment_Formulation']]],
+  ['_7ecatchment_5fformulation_8',['~Catchment_Formulation',['../classrealization_1_1_catchment___formulation.html#af3f6844bf377c6483b744b94dcbbc3fc',1,'realization::Catchment_Formulation']]],
   ['_7edatabase_9',['~database',['../classngen_1_1sqlite_1_1database.html#a41766d7ef8d68bcc3699b4ea5f469831',1,'ngen::sqlite::database']]],
   ['_7edataprovider_10',['~DataProvider',['../classdata__access_1_1_data_provider.html#a05eb2e57a95517673fe2161aa45c906a',1,'data_access::DataProvider']]],
   ['_7edimension_11',['~dimension',['../structngen_1_1detail_1_1dimension.html#a7c3f999242e90c0e8b47d2fb01c94ff9',1,'ngen::detail::dimension']]],
@@ -48,7 +48,11 @@ var searchData=
   ['_7enetwork_5ftest1_45',['~Network_Test1',['../class_network___test1.html#ad69e160d0367219743d320cf97bc772b',1,'Network_Test1']]],
   ['_7enexus_5fremote_5ftest_46',['~Nexus_Remote_Test',['../class_nexus___remote___test.html#a022b70071c3a3871db87f6cb7a45615c',1,'Nexus_Remote_Test']]],
   ['_7enexus_5ftest_47',['~Nexus_Test',['../class_nexus___test.html#ab052527da35d97d184f6cd5a476efd36',1,'Nexus_Test']]],
-  ['_7epartitions_5fparser_48',['~Partitions_Parser',['../class_partitions___parser.html#a31cd926a275c0d00b45b14d076231234',1,'Partitions_Parser']]],
-  ['_7estreamhandler_49',['~StreamHandler',['../classutils_1_1_stream_handler.html#a9c2a94967e4afa1afe854878dac2c354',1,'utils::StreamHandler']]],
-  ['_7eunitshelper_5ftest_50',['~UnitsHelper_Test',['../class_units_helper___test.html#ac342c365275e4173691ab84e9b76b5a5',1,'UnitsHelper_Test']]]
+  ['_7enexusoutputsmgr_48',['~NexusOutputsMgr',['../classutils_1_1_nexus_outputs_mgr.html#a2d87d034c26bf83787668cf50f704256',1,'utils::NexusOutputsMgr']]],
+  ['_7engenbmiprotocol_49',['~NgenBmiProtocol',['../classmodels_1_1bmi_1_1protocols_1_1_ngen_bmi_protocol.html#ac38bd9b1e5f1fb5062e155caab0f6ad5',1,'models::bmi::protocols::NgenBmiProtocol']]],
+  ['_7engenmassbalance_50',['~NgenMassBalance',['../classmodels_1_1bmi_1_1protocols_1_1_ngen_mass_balance.html#a94f2988c778a6e1bf035d3738a16823c',1,'models::bmi::protocols::NgenMassBalance']]],
+  ['_7epartitions_5fparser_51',['~Partitions_Parser',['../class_partitions___parser.html#a31cd926a275c0d00b45b14d076231234',1,'Partitions_Parser']]],
+  ['_7eprotocolerror_52',['~ProtocolError',['../classmodels_1_1bmi_1_1protocols_1_1_protocol_error.html#afb080ed99f118e6d5cac63c630810c50',1,'models::bmi::protocols::ProtocolError']]],
+  ['_7estreamhandler_53',['~StreamHandler',['../classutils_1_1_stream_handler.html#a9c2a94967e4afa1afe854878dac2c354',1,'utils::StreamHandler']]],
+  ['_7eunitshelper_5ftest_54',['~UnitsHelper_Test',['../class_units_helper___test.html#ac342c365275e4173691ab84e9b76b5a5',1,'UnitsHelper_Test']]]
 ];
