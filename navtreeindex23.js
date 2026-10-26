@@ -1,7 +1,5 @@
 var NAVTREEINDEX23 =
 {
-"structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a42bfc02aaf6e2de7a9dcb7475f40e64b":[26,0,4,4,0,1],
-"structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a42bfc02aaf6e2de7a9dcb7475f40e64b":[27,0,3,4,0,1],
 "structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a5799c960bad5171fede3d518204093b9":[26,0,4,4,0,0],
 "structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a5799c960bad5171fede3d518204093b9":[27,0,3,4,0,0],
 "structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a7e97290db6eaa65e9485563af7579620":[26,0,4,4,0,3],
@@ -249,5 +247,7 @@ var NAVTREEINDEX23 =
 "structngen_1_1sqlite_1_1database_1_1iterator.html#a61a73e09122670e88122238cce97c75f":[26,0,10,2,0,1,12],
 "structngen_1_1sqlite_1_1database_1_1iterator.html#a61a73e09122670e88122238cce97c75f":[27,0,8,2,0,1,12],
 "structngen_1_1sqlite_1_1database_1_1iterator.html#a6264a931fd47e5afa56db2c77a40a232":[26,0,10,2,0,1,8],
-"structngen_1_1sqlite_1_1database_1_1iterator.html#a6264a931fd47e5afa56db2c77a40a232":[27,0,8,2,0,1,8]
+"structngen_1_1sqlite_1_1database_1_1iterator.html#a6264a931fd47e5afa56db2c77a40a232":[27,0,8,2,0,1,8],
+"structngen_1_1sqlite_1_1database_1_1iterator.html#a651bce7eb2e56732fb3c33dcfc57c70e":[26,0,10,2,0,1,0],
+"structngen_1_1sqlite_1_1database_1_1iterator.html#a651bce7eb2e56732fb3c33dcfc57c70e":[27,0,8,2,0,1,0]
 };

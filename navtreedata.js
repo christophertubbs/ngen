@@ -531,9 +531,9 @@ var NAVTREEINDEX =
 "classutils_1_1_stream_handler.html#a2dfca7edeb224cc942b6ef7302c6a08d",
 "md_doc_2_b_u_i_l_d_s___a_n_d___c_m_a_k_e.html#autotoc_md187",
 "namespacegeojson.html#a5c82b2a9948b6f057381bf16e197bde4",
-"namespacengen_1_1geopackage.html#afd11eef2894e7e6e837c5f7ff4d3286aadc5f0396245168de908f0055c88b5524",
-"structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a42bfc02aaf6e2de7a9dcb7475f40e64b",
-"structngen_1_1sqlite_1_1database_1_1iterator.html#a651bce7eb2e56732fb3c33dcfc57c70e"
+"namespacengen_1_1serialization.html#a0e8a026f55fe81c3395abe0e2a9cd94a",
+"structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a5799c960bad5171fede3d518204093b9",
+"structngen_1_1sqlite_1_1database_1_1iterator.html#a675a7559d402dc2579e006fdbf8a410a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

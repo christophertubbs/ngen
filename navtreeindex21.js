@@ -133,9 +133,7 @@ var NAVTREEINDEX21 =
 "namespacemodels_1_1bmi.html#aa56083ccb0ce55d60a4c3c3391b65928":[26,0,7,0,9],
 "namespacemodels_1_1bmi.html#ad08b04570775a5bfade8aa39deb0d751":[26,0,7,0,13],
 "namespacemodels_1_1bmi_1_1helper.html":[26,0,7,0,0],
-"namespacemodels_1_1bmi_1_1helper.html#ae390f681f50fc89690893b76733a88e1":[26,0,7,0,0,1],
-"namespacemodels_1_1bmi_1_1helper_1_1anonymous__namespace_02bmi__utilities_8hpp_03.html":[26,0,7,0,0,0],
-"namespacemodels_1_1bmi_1_1helper_1_1anonymous__namespace_02bmi__utilities_8hpp_03.html#ac3489e8534af633a43e76f29b82d0440":[26,0,7,0,0,0,0],
+"namespacemodels_1_1bmi_1_1helper.html#ae390f681f50fc89690893b76733a88e1":[26,0,7,0,0,0],
 "namespacemodels_1_1bmi_1_1protocols.html":[26,0,7,0,1],
 "namespacemodels_1_1bmi_1_1protocols.html#a0d2708045fe54054be425ef0696205b6":[26,0,7,0,1,34],
 "namespacemodels_1_1bmi_1_1protocols.html#a0e1beadffaeafb44c99f84326d56301d":[26,0,7,0,1,29],
@@ -249,5 +247,7 @@ var NAVTREEINDEX21 =
 "namespacengen_1_1geopackage.html#afd11eef2894e7e6e837c5f7ff4d3286aa553605998a40f99701b1ef272df65544":[26,0,10,0,1,1],
 "namespacengen_1_1geopackage.html#afd11eef2894e7e6e837c5f7ff4d3286aa989ab867af63c1a5b6e3595867bea9e6":[26,0,10,0,1,7],
 "namespacengen_1_1geopackage.html#afd11eef2894e7e6e837c5f7ff4d3286aab2ce2b0a8dcbab06451a1fb53c734e55":[26,0,10,0,1,3],
-"namespacengen_1_1geopackage.html#afd11eef2894e7e6e837c5f7ff4d3286aacbe84f27feccde644804f78addffaf64":[26,0,10,0,1,2]
+"namespacengen_1_1geopackage.html#afd11eef2894e7e6e837c5f7ff4d3286aacbe84f27feccde644804f78addffaf64":[26,0,10,0,1,2],
+"namespacengen_1_1geopackage.html#afd11eef2894e7e6e837c5f7ff4d3286aadc5f0396245168de908f0055c88b5524":[26,0,10,0,1,6],
+"namespacengen_1_1serialization.html":[26,0,10,1]
 };

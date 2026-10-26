@@ -1,7 +1,5 @@
 var NAVTREEINDEX22 =
 {
-"namespacengen_1_1geopackage.html#afd11eef2894e7e6e837c5f7ff4d3286aadc5f0396245168de908f0055c88b5524":[26,0,10,0,1,6],
-"namespacengen_1_1serialization.html":[26,0,10,1],
 "namespacengen_1_1serialization.html#a0e8a026f55fe81c3395abe0e2a9cd94a":[26,0,10,1,15],
 "namespacengen_1_1serialization.html#a1a066470dd08b1662c07b54839f6f21f":[26,0,10,1,19],
 "namespacengen_1_1serialization.html#a2abe0702ee648c230f48c6fa95803016":[26,0,10,1,11],
@@ -249,5 +247,7 @@ var NAVTREEINDEX22 =
 "structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html":[26,0,4,4,0],
 "structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html":[27,0,3,4,0],
 "structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a214aedf3b3e73ed4f5de14f0806675d4":[26,0,4,4,0,2],
-"structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a214aedf3b3e73ed4f5de14f0806675d4":[27,0,3,4,0,2]
+"structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a214aedf3b3e73ed4f5de14f0806675d4":[27,0,3,4,0,2],
+"structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a42bfc02aaf6e2de7a9dcb7475f40e64b":[26,0,4,4,0,1],
+"structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html#a42bfc02aaf6e2de7a9dcb7475f40e64b":[27,0,3,4,0,1]
 };

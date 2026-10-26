@@ -1,7 +1,5 @@
 var NAVTREEINDEX24 =
 {
-"structngen_1_1sqlite_1_1database_1_1iterator.html#a651bce7eb2e56732fb3c33dcfc57c70e":[26,0,10,2,0,1,0],
-"structngen_1_1sqlite_1_1database_1_1iterator.html#a651bce7eb2e56732fb3c33dcfc57c70e":[27,0,8,2,0,1,0],
 "structngen_1_1sqlite_1_1database_1_1iterator.html#a675a7559d402dc2579e006fdbf8a410a":[26,0,10,2,0,1,3],
 "structngen_1_1sqlite_1_1database_1_1iterator.html#a675a7559d402dc2579e006fdbf8a410a":[27,0,8,2,0,1,3],
 "structngen_1_1sqlite_1_1database_1_1iterator.html#a6c3b0d6cb4ca0421cc85ce2f20789cb9":[26,0,10,2,0,1,10],
