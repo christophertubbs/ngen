@@ -66,7 +66,8 @@ var annotated_dup =
         [ "Bmi_Adapter", "classmodels_1_1bmi_1_1_bmi___adapter.html", "classmodels_1_1bmi_1_1_bmi___adapter" ],
         [ "Bmi_C_Adapter", "classmodels_1_1bmi_1_1_bmi___c___adapter.html", "classmodels_1_1bmi_1_1_bmi___c___adapter" ],
         [ "Bmi_Cpp_Adapter", "classmodels_1_1bmi_1_1_bmi___cpp___adapter.html", "classmodels_1_1bmi_1_1_bmi___cpp___adapter" ],
-        [ "unknown_bmi_type", "structmodels_1_1bmi_1_1unknown__bmi__type.html", "structmodels_1_1bmi_1_1unknown__bmi__type" ]
+        [ "unknown_bmi_type", "structmodels_1_1bmi_1_1unknown__bmi__type.html", "structmodels_1_1bmi_1_1unknown__bmi__type" ],
+        [ "unsupported_primitive_type", "structmodels_1_1bmi_1_1unsupported__primitive__type.html", "structmodels_1_1bmi_1_1unsupported__primitive__type" ]
       ] ],
       [ "external", "namespacemodels_1_1external.html", [
         [ "State_Exception", "classmodels_1_1external_1_1_state___exception.html", "classmodels_1_1external_1_1_state___exception" ]
@@ -75,7 +76,12 @@ var annotated_dup =
     [ "multithreading", "namespacemultithreading.html", [
       [ "details", "namespacemultithreading_1_1details.html", [
         [ "string_literal", "structmultithreading_1_1details_1_1string__literal.html", "structmultithreading_1_1details_1_1string__literal" ]
-      ] ]
+      ] ],
+      [ "cache_slot", "structmultithreading_1_1cache__slot.html", "structmultithreading_1_1cache__slot" ],
+      [ "failed_fill", "structmultithreading_1_1failed__fill.html", null ],
+      [ "per_thread", "classmultithreading_1_1per__thread.html", "classmultithreading_1_1per__thread" ],
+      [ "shared_cache", "structmultithreading_1_1shared__cache.html", "structmultithreading_1_1shared__cache" ],
+      [ "thread_key", "structmultithreading_1_1thread__key.html", "structmultithreading_1_1thread__key" ]
     ] ],
     [ "network", "namespacenetwork.html", [
       [ "Network", "classnetwork_1_1_network.html", "classnetwork_1_1_network" ],
@@ -162,13 +168,10 @@ var annotated_dup =
       [ "CatchmentOutputsMgr", "classutils_1_1_catchment_outputs_mgr.html", "classutils_1_1_catchment_outputs_mgr" ],
       [ "FeatureDescriptor", "structutils_1_1_feature_descriptor.html", "structutils_1_1_feature_descriptor" ],
       [ "FileChecker", "classutils_1_1_file_checker.html", "classutils_1_1_file_checker" ],
-      [ "FileStreamHandler", "classutils_1_1_file_stream_handler.html", "classutils_1_1_file_stream_handler" ],
       [ "FormulationStepOutput", "structutils_1_1_formulation_step_output.html", "structutils_1_1_formulation_step_output" ],
       [ "NexusOutputsMgr", "classutils_1_1_nexus_outputs_mgr.html", "classutils_1_1_nexus_outputs_mgr" ],
-      [ "NullStream", "classutils_1_1_null_stream.html", "classutils_1_1_null_stream" ],
       [ "OutputField", "structutils_1_1_output_field.html", "structutils_1_1_output_field" ],
       [ "PerNexusCsvOutputMgr", "classutils_1_1_per_nexus_csv_output_mgr.html", "classutils_1_1_per_nexus_csv_output_mgr" ],
-      [ "StreamHandler", "classutils_1_1_stream_handler.html", "classutils_1_1_stream_handler" ],
       [ "time_marker", "structutils_1_1time__marker.html", "structutils_1_1time__marker" ]
     ] ],
     [ "add_to_summed_nexus", "structadd__to__summed__nexus.html", "structadd__to__summed__nexus" ],

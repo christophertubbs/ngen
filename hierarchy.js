@@ -14,20 +14,6 @@ var hierarchy =
     [ "boost::dfs_visitor", null, [
       [ "network::preorder_visitor< OutputIterator >", "structnetwork_1_1preorder__visitor.html", null ]
     ] ],
-    [ "boost::exception", null, [
-      [ "add_to_summed_nexus", "structadd__to__summed__nexus.html", null ],
-      [ "completed_time_step", "structcompleted__time__step.html", null ],
-      [ "invalid_downstream_request", "structinvalid__downstream__request.html", null ],
-      [ "request_from_empty_nexus", "structrequest__from__empty__nexus.html", null ]
-    ] ],
-    [ "boost::iostreams::stream", null, [
-      [ "utils::NullStream", "classutils_1_1_null_stream.html", null ]
-    ] ],
-    [ "boost::static_visitor", null, [
-      [ "geojson::JSONProperty::AsVectorVisitor< T >", "structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html", null ],
-      [ "hy_features::attributes::area_from_geometry_visitor", "structhy__features_1_1attributes_1_1area__from__geometry__visitor.html", null ],
-      [ "ngen::geopackage::wkb::wgs84", "structngen_1_1geopackage_1_1wkb_1_1wgs84.html", null ]
-    ] ],
     [ "BoundingBox", "struct_bounding_box.html", null ],
     [ "CatchmentAggrDataSelector", "class_catchment_aggr_data_selector.html", null ],
     [ "Cell", "struct_cell.html", null ],
@@ -64,6 +50,7 @@ var hierarchy =
       [ "Visitor", "class_visitor.html", null ]
     ] ],
     [ "geojson::JSONProperty", "classgeojson_1_1_j_s_o_n_property.html", null ],
+    [ "geojson::JSONProperty::AsVectorVisitor< T >", "structgeojson_1_1_j_s_o_n_property_1_1_as_vector_visitor.html", null ],
     [ "geojson::List", "structgeojson_1_1_list.html", null ],
     [ "geojson::Object", "structgeojson_1_1_object.html", null ],
     [ "GM_Object", "class_g_m___object.html", [
@@ -76,6 +63,7 @@ var hierarchy =
     [ "GridDataSelector", "struct_grid_data_selector.html", null ],
     [ "GridSpecification", "struct_grid_specification.html", null ],
     [ "HY_CatchmentRealization::Response", "class_h_y___catchment_realization_1_1_response.html", null ],
+    [ "hy_features::attributes::area_from_geometry_visitor", "structhy__features_1_1attributes_1_1area__from__geometry__visitor.html", null ],
     [ "hy_features::HY_Features", "classhy__features_1_1_h_y___features.html", null ],
     [ "hy_features::hydrolocation::HY_DistanceFromReferent", "structhy__features_1_1hydrolocation_1_1_h_y___distance_from_referent.html", null ],
     [ "hy_features::hydrolocation::HY_IndirectPosition", "classhy__features_1_1hydrolocation_1_1_h_y___indirect_position.html", null ],
@@ -99,7 +87,12 @@ var hierarchy =
     [ "models::bmi::protocols::NgenBmiProtocols", "classmodels_1_1bmi_1_1protocols_1_1_ngen_bmi_protocols.html", null ],
     [ "models::bmi::protocols::ReservedVar", "structmodels_1_1bmi_1_1protocols_1_1_reserved_var.html", null ],
     [ "models::bmi::protocols::serialization::wire_format::RecordPrefix", "structmodels_1_1bmi_1_1protocols_1_1serialization_1_1wire__format_1_1_record_prefix.html", null ],
+    [ "multithreading::cache_slot< T >", "structmultithreading_1_1cache__slot.html", null ],
     [ "multithreading::details::string_literal< N >", "structmultithreading_1_1details_1_1string__literal.html", null ],
+    [ "multithreading::failed_fill", "structmultithreading_1_1failed__fill.html", null ],
+    [ "multithreading::per_thread< T >", "classmultithreading_1_1per__thread.html", null ],
+    [ "multithreading::shared_cache< Key, T >", "structmultithreading_1_1shared__cache.html", null ],
+    [ "multithreading::thread_key", "structmultithreading_1_1thread__key.html", null ],
     [ "network::Network", "classnetwork_1_1_network.html", null ],
     [ "network::VertexProperty", "structnetwork_1_1_vertex_property.html", null ],
     [ "Network_Test", "class_network___test.html", [
@@ -109,6 +102,7 @@ var hierarchy =
     ] ],
     [ "ngen::geopackage::GeoPackageReader", "classngen_1_1geopackage_1_1_geo_package_reader.html", null ],
     [ "ngen::geopackage::wkb", "structngen_1_1geopackage_1_1wkb.html", null ],
+    [ "ngen::geopackage::wkb::wgs84", "structngen_1_1geopackage_1_1wkb_1_1wgs84.html", null ],
     [ "ngen::hydrofabric::anonymous_namespace{HydrofabricReaderFactory.cpp}::Identified", "structngen_1_1hydrofabric_1_1anonymous__namespace_02_hydrofabric_reader_factory_8cpp_03_1_1_identified.html", null ],
     [ "ngen::hydrofabric::HydrofabricReader", "classngen_1_1hydrofabric_1_1_hydrofabric_reader.html", [
       [ "ngen::hydrofabric::GeoJSONHydrofabricReader", "classngen_1_1hydrofabric_1_1_geo_j_s_o_n_hydrofabric_reader.html", null ],
@@ -192,6 +186,7 @@ var hierarchy =
       [ "std::runtime_error", null, [
         [ "UnitsHelper::unit_conversion_exception", "struct_units_helper_1_1unit__conversion__exception.html", null ],
         [ "models::bmi::unknown_bmi_type", "structmodels_1_1bmi_1_1unknown__bmi__type.html", null ],
+        [ "models::bmi::unsupported_primitive_type", "structmodels_1_1bmi_1_1unsupported__primitive__type.html", null ],
         [ "ngen::sqlite::sqlite_error", "structngen_1_1sqlite_1_1sqlite__error.html", null ]
       ] ]
     ] ],
@@ -233,8 +228,5 @@ var hierarchy =
       [ "utils::PerNexusCsvOutputMgr", "classutils_1_1_per_nexus_csv_output_mgr.html", null ]
     ] ],
     [ "utils::OutputField", "structutils_1_1_output_field.html", null ],
-    [ "utils::StreamHandler", "classutils_1_1_stream_handler.html", [
-      [ "utils::FileStreamHandler", "classutils_1_1_file_stream_handler.html", null ]
-    ] ],
     [ "utils::time_marker", "structutils_1_1time__marker.html", null ]
 ];
